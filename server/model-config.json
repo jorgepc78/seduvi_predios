@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "inv_predios",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "inv_predios",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "inv_predios",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "inv_predios",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "inv_predios",
+    "public": false
+  },
+  "Usuarios": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatColonias": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatEstatusPredioDisponibles": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatLocalidades": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatEstatusTitulo": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatMunicipios": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatModalidadPrograma": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatSituacionFinanciera": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatSituacionFisica": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatSituacionGeomPredio": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatSituacionJuridica": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatTipoAsignacion": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatTipoDocumentoAsignacion": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatTipoLote": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "CatTipoProcedimiento": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "TdPrediosInventario": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaGeomPredios": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaPrediosDisponibles": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaLocalidadesPredios": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaColoniasPredios": {
+    "dataSource": "inv_predios",
+    "public": true
+  }
+}

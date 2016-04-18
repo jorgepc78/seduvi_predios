@@ -1,0 +1,574 @@
+{
+  "name": "VistaPrediosDisponibles",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "postgresql": {
+    "schema": "public",
+    "table": "vista_predios_disponibles"
+  },
+  "properties": {
+    "estatusDisponibles": {
+      "type": "String",
+      "required": false,
+      "length": 45,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "estatus_disponibles",
+        "dataType": "character varying",
+        "dataLength": 45,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "claveMunicipio": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "clave_municipio",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "municipio": {
+      "type": "String",
+      "required": false,
+      "length": 34,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "municipio",
+        "dataType": "character varying",
+        "dataLength": 34,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idLocalidad": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_localidad",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "localidad": {
+      "type": "String",
+      "required": false,
+      "length": 85,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "localidad",
+        "dataType": "character varying",
+        "dataLength": 85,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idColonia": {
+      "type": "Number",
+      "id": true,
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_colonia",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "colonia": {
+      "type": "String",
+      "required": false,
+      "length": 85,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "colonia",
+        "dataType": "character varying",
+        "dataLength": 85,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "direccion": {
+      "type": "String",
+      "required": false,
+      "length": 95,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "direccion",
+        "dataType": "character varying",
+        "dataLength": 95,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "manzana": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "manzana",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "lote": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "lote",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "subdivisionLote": {
+      "type": "String",
+      "required": false,
+      "length": 3,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "subdivision_lote",
+        "dataType": "character varying",
+        "dataLength": 3,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "tipoLote": {
+      "type": "String",
+      "required": false,
+      "length": 45,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "tipo_lote",
+        "dataType": "character varying",
+        "dataLength": 45,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "claveCatastral": {
+      "type": "String",
+      "required": false,
+      "length": 22,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "clave_catastral",
+        "dataType": "character varying",
+        "dataLength": 22,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "superficie": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "superficie",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "medidasNorte": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "medidas_norte",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "colindanteNorte": {
+      "type": "String",
+      "required": false,
+      "length": 150,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "colindante_norte",
+        "dataType": "character varying",
+        "dataLength": 150,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "medidasSur": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "medidas_sur",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "colindanteSur": {
+      "type": "String",
+      "required": false,
+      "length": 150,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "colindante_sur",
+        "dataType": "character varying",
+        "dataLength": 150,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "medidasEste": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "medidas_este",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "colindanteEste": {
+      "type": "String",
+      "required": false,
+      "length": 150,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "colindante_este",
+        "dataType": "character varying",
+        "dataLength": 150,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "medidasOeste": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "medidas_oeste",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "colindanteOeste": {
+      "type": "String",
+      "required": false,
+      "length": 150,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "colindante_oeste",
+        "dataType": "character varying",
+        "dataLength": 150,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "folioElectronicoRpp": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "folio_electronico_rpp",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "fechaRegistroRpp": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "fecha_registro_rpp",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "lugarRegistroRpp": {
+      "type": "String",
+      "required": false,
+      "length": 45,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "lugar_registro_rpp",
+        "dataType": "character varying",
+        "dataLength": 45,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "observacionesPredio": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "observaciones_predio",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "situacionGeomPredio": {
+      "type": "String",
+      "required": false,
+      "length": 65,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "situacion_geom_predio",
+        "dataType": "character varying",
+        "dataLength": 65,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "costoAutorizadoM2": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "costo_autorizado_m2",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "totalCosto": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "total_costo",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "costoContable": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "costo_contable",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "observacionesDisponibles": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "observaciones_disponibles",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "fechaActDisponibles": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "fecha_act_disponibles",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "id": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idp": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "idp",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "nodos_poligono": {
+      "type": "hasMany",
+      "model": "VistaGeomPredios",
+      "foreignKey": "idp"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

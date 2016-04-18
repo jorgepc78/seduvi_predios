@@ -1,0 +1,57 @@
+{
+  "name": "CatMunicipios",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "postgresql": {
+    "schema": "public",
+    "table": "cat_municipios"
+  },
+  "properties": {
+    "claveMunicipio": {
+      "type": "Number",
+      "id": true,
+      "required": false,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "clave_municipio",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "nombreMunicipio": {
+      "type": "String",
+      "required": false,
+      "length": 34,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "nombre_municipio",
+        "dataType": "character varying",
+        "dataLength": 34,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "predios_pertenecientes": {
+      "type": "hasMany",
+      "model": "TdPrediosInventario",
+      "foreignKey": "claveMunicipio"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

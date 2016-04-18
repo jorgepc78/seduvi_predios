@@ -1,0 +1,171 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{vm.tituloSeccion}}</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+                <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                        <form name="form_datos_cliente" class="form-horizontal" ng-submit="vm.guardaDatosCliente()">
+                                                            <br>
+                                                            <div class="form-group"><label class="col-sm-2 control-label">* Localidad</label>
+                                                                <div class="col-sm-10">
+                                                                    <select class="form-control m-b" 
+                                                                        ng-disabled="vm.isDisabled"
+                                                                        ng-model="vm.localidadSeleccionada"
+                                                                        ng-change="vm.ubicaDirMapa()"
+                                                                        ng-options="localidad as localidad.nombreLocalidad for localidad in vm.combolocalidades" required>
+                                                                    </select>
+                                                                    <span ng-show="vm.alertNoLocalidad" class="help-block m-b-none alert-danger">Debe seleccionar una localidad.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group"><label class="col-sm-2 control-label">* Rubro principal</label>
+                                                                <div class="col-sm-10">
+                                                                    <select class="form-control m-b" 
+                                                                        ng-model="vm.rubroSeleccionado"
+                                                                         ng-change="vm.agrega_rubro_principal()"
+                                                                        ng-options="lrubro as lrubro.rubro for lrubro in vm.comborubros" required>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Compa&ntilde;ia</label>
+                                                                <div class="col-sm-10"><input type="text" class="form-control" ng-model="vm.cliente.compania"></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">* Nombre cliente</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <div class="row">
+                
+                                                                        <div class="col-md-4">
+                                                                            <input type="text" class="form-control" ng-model="vm.cliente.nombre" required>
+                                                                        </div>
+                
+                                                                        <div class="col-md-2">
+                                                                                <label class="control-label">* Apellidos</label>
+                                                                        </div>
+                
+                                                                        <div class="col-md-6">
+                                                                            <input type="text" class="form-control" ng-model="vm.cliente.apellidos" required>
+                                                                        </div>
+                
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Descripci&oacute;n del negocio</label>
+                                                                <div class="col-sm-10"><textarea class="form-control" ng-model="vm.cliente.descripcion" rows="3" cols="90"></textarea></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">* Celular principal</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <div class="row">
+                
+                                                                        <div class="col-md-5">
+                                                                            <input type="text" class="form-control" data-mask="(999) 999-99-99" placeholder="" ng-model="vm.cliente.celular1" required>
+                                                                            <span class="help-block">(999) 999-99-99</span>
+                                                                        </div>
+                
+                                                                        <div class="col-md-2">
+                                                                                <label class="control-label">Operador</label>
+                                                                        </div>
+                
+                                                                        <div class="col-md-5">
+                                                                            <input type="text" class="form-control" ng-model="vm.cliente.operadorCelular1">
+                                                                        </div>
+                
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Celular 2</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <div class="row">
+                
+                                                                        <div class="col-md-4">
+                                                                            <input type="text" class="form-control" data-mask="(999) 999-99-99" placeholder="" ng-model="vm.cliente.celular2">
+                                                                            <span class="help-block">(999) 999-99-99</span>
+                                                                        </div>
+                
+                                                                        <div class="col-md-3">
+                                                                                <label class="control-label">Tel&eacute;fono oficina</label>
+                                                                        </div>
+               
+                                                                        <div class="col-md-4">
+                                                                            <input type="text" class="form-control" data-mask="(999) 99-9-9999" placeholder="" ng-model="vm.cliente.telefonoOficina">
+                                                                            <span class="help-block">(999) 99-9-9999</span>
+                                                                        </div>
+                
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                            
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Correo electr&oacute;nico</label>
+                                                                <div class="col-sm-10"><input type="email" class="form-control" ng-model="vm.cliente.email"></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Tags</label>
+                                                                <div class="col-sm-10">
+                                                                    <tags-input class="ListaTagClass" ng-model="vm.tags" on-tag-added="vm.tagAdded($tag)" replace-spaces-with-dashes="false" display-property="tag"><auto-complete source="vm.cargaTags($query)" min-length="3" max-results="10"></auto-complete></tags-input>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Notas</label>
+                                                                <div class="col-sm-10"><textarea class="form-control" ng-model="vm.cliente.notas" rows="3" cols="90"></textarea></div>
+                                                            </div>
+                                                            <div class="hr-line-dashed"></div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                            <div class="col-md-4 col-md-offset-3">
+                                                                                <button class="btn btn-default btn-labeled" ui-sref="index.adminprincipal"><span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span> Cancelar</button>
+                                                                            </div>
+                                                                            <div class="col-md-4 ">
+                                                                                <button class="btn btn-primary btn-labeled" type="submit" ng-disabled="form_datos_cliente.$invalid"><span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> {{vm.txt_boton}}</button>
+                                                                            </div>
+                                                                </div>
+                                                            </div>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                        <form name="form_datos_cliente2" class="form-horizontal" ng-submit="vm.guardaDatosCliente()">
+                                                            <br>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Direcci&oacute;n</label>
+                                                                <div class="col-sm-10">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" ng-model="vm.cliente.sucursales[0].direccion">
+                                                                                <span class="input-group-btn">
+                                                                                    <button type="button" class="btn btn-primary btn-labeled" ng-click="vm.ubicaDirMapa()"><span class="btn-label"><i class="glyphicon glyphicon-map-marker"></i></span>Ubicar en el mapa</button>
+                                                                                </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Ubicacion</label>
+                                                                <div class="col-sm-10">
+                                                                    <div ui-map="vm.model.MapUbicacionGymEdit" ui-options="vm.mapOptions" style="width: 100%; height: 400px;"></div>
+                                                                </div>
+                                                            </div>
+                                        </form>
+                                </div>
+                        </div>
+                    <div ng-show="alertNoDireccion" class="alert alert-danger">
+                        No se pudo encontrar la direcci&oacute;n, por favor especifique m&aacute;s la b&uacute;squeda
+                    </div>
+                </div>
+
+        </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="row border-bottom">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                <i class="fa fa-reorder"></i>
+            </button>
+            <a href="#" class="navbar-brand">Inventario de predios</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+
+                <li ui-sref-active="active" ng-show="currentUser">
+                    <a ui-sref="index.predios_disponibles"><i class="fa fa-bar-chart"></i> <span class="nav-label">Predios disponibles</span></a>
+                </li>
+
+                <li ui-sref-active="active" ng-show="currentUser">
+                    <a ui-sref="index.predios_contratados"><i class="fa fa-envelope-o"></i> <span class="nav-label">Predios contratados</span></a>
+                </li>
+
+                <li ui-sref-active="active" ng-show="currentUser">
+                    <a ui-sref="index.predios_titulados"><i class="fa fa-envelope-o"></i> <span class="nav-label">Predios titulados</span></a>
+                </li>
+
+                <li ui-sref-active="active" ng-show="currentUser">
+                    <a ui-sref="index.predios_noclasificados"><i class="fa fa-file-text-o"></i> <span class="nav-label">Predios no clasificados</span></a>
+                </li>
+
+                <li class="dropdown" dropdown ng-show="currentUser">
+                    <a class="dropdown-toggle" href dropdown-toggle><i class="fa fa-bars"></i>Cat&aacute;logos <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.registra_pago"><i class="fa fa-user"></i> <span class="nav-label"> Mis datos</span></a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.registra_pago"><i class="fa fa-usd"></i> <span class="nav-label"> Mi historial de cr&eacute;dito</span></a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a ui-sref="logout"><i class="fa fa-sign-out"></i> Cerrar sesi&oacute;n</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
