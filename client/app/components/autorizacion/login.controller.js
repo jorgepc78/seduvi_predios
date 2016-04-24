@@ -14,8 +14,8 @@
         vm.login = login;
 
         vm.user = {
-            username: 'admin',
-            password: 'admin'
+            username: 'jorgepc',
+            password: 'txfiles'
         };
 
         vm.msg_error_login = false;
@@ -30,9 +30,13 @@
             .login({
                 username: vm.user.username,
                 password: vm.user.password,
-                include: ['user']
-            }
-            )
+                include: [
+                    'user',
+                    {
+                        relation: 'perfil_usuario'
+                    }
+                ]
+            })
             .$promise
             .then(function(response) {
 

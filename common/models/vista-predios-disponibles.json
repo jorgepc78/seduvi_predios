@@ -10,6 +10,59 @@
     "table": "vista_predios_disponibles"
   },
   "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idp": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "idp",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idEstatusDisponibles": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_estatus_disponibles",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
     "estatusDisponibles": {
       "type": "String",
       "required": false,
@@ -520,42 +573,6 @@
         "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
-    "id": {
-      "type": "number",
-      "id": true,
-      "required": false,
-      "index": true,
-      "length": null,
-      "precision": 64,
-      "scale": 0,
-      "postgresql": {
-        "columnName": "id",
-        "dataType": "bigint",
-        "dataLength": null,
-        "dataPrecision": 64,
-        "dataScale": 0,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
-    "idp": {
-      "type": "number",
-      "id": true,
-      "required": false,
-      "index": true,
-      "length": null,
-      "precision": 64,
-      "scale": 0,
-      "postgresql": {
-        "columnName": "idp",
-        "dataType": "bigint",
-        "dataLength": null,
-        "dataPrecision": 64,
-        "dataScale": 0,
         "nullable": "YES"
       },
       "_selectable": true

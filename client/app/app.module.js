@@ -9,7 +9,8 @@
     	'LocalStorageModule',
     	'ui.event',
     	'oitozero.ngSweetAlert',
-        'ui.map'
+        'ui.map',
+        'ui.date'
     	/*'templates'*/
     ]);
 })();

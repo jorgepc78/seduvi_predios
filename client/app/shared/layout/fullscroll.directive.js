@@ -12,7 +12,8 @@
                 $timeout(function(){
                     element.slimscroll({
                         height: '100%',
-                        railOpacity: 0.9
+                        railOpacity: 0.9,
+                        alwaysVisible: true
                     });
 
                 });

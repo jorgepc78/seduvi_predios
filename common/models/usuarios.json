@@ -2,22 +2,84 @@
   "name": "Usuarios",
   "plural": "Usuarios",
   "base": "User",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "nombre_completo": {
-      "type": "string",
-      "required": true
+    "nombreCompleto": {
+      "type": "String",
+      "required": true,
+      "length": 86,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "nombre_completo",
+        "dataType": "character varying",
+        "dataLength": 86,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
     },
     "area": {
-      "type": "string",
-      "required": true
+      "type": "String",
+      "required": true,
+      "length": 254,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "area",
+        "dataType": "character varying",
+        "dataLength": 254,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idPerfil": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_perfil",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "administrador": {
+      "type": "boolean",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "administrador",
+        "dataType": "boolean",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "perfil_usuario": {
+      "type": "hasOne",
+      "model": "PerfilesUsuarios",
+      "foreignKey": "idPerfil"
+    }
+  },
   "acls": [],
   "methods": {}
 }

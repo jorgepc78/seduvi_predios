@@ -1,0 +1,169 @@
+<div class="inmodal">
+      <div class="modal-header">
+          <h4 class="modal-title"> Datos del contrato del predio</h4>
+      </div>
+      <div class="modal-body">
+            <form name="form_datos" class="form-horizontal">
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Beneficiario</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-5">
+                                  <input type="text" class="form-control" ng-model="vm.predioEditar.beneficiario">
+                              </div>
+                              <div class="col-md-2 text-right">
+                                      <label class="control-label">C&oacute;nyugue</label>
+                              </div>
+                              <div class="col-md-5">
+                                  <input type="text" class="form-control" ng-model="vm.predioEditar.conyugue">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">N&uacute;n. expediente</label>
+                      <div class="col-sm-3">
+                          <input type="text" class="form-control" ng-model="vm.predioEditar.numeroExpediente">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Documento de asignaci&oacute;n</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <select class="form-control m-b" 
+                                      ng-model="vm.predioEditar.DocumentoAsignacion"
+                                      ng-options="documento as documento.documentoAsignacion for documento in vm.listaDocumentosAsig" required>
+                                  </select>
+                              </div>
+                              <div class="col-md-2 text-right">
+                                  <label class="control-label">Modalidad del programa</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <select class="form-control m-b" 
+                                      ng-model="vm.predioEditar.ModalidadPrograma"
+                                      ng-options="modalidad as modalidad.modalidadPrograma for modalidad in vm.listaModalidadProg" required>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">N&uacute;m. contrato</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-3">
+                                  <input type="text" class="form-control" ng-model="vm.predioEditar.numContrato" required>
+                              </div>
+                              <div class="col-md-3 text-right">
+                                  <label class="control-label">Fecha del contrato</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="input-group date">
+                                      <input type="text" readonly class="form-control" is-open="vm.opened1" datepicker-popup="d/M/yyyy" ui-date="dateOptions" ng-model="vm.predioEditar.fechaContrato" required>
+                                      <span class="input-group-addon" ng-click="vm.openCalendar1($event)"><i class="fa fa-calendar"></i>
+                                          
+                                      </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>1
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Fecha inicio pago</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <div class="input-group date">
+                                      <input type="text" readonly class="form-control" is-open="vm.opened2" datepicker-popup="d/M/yyyy" ui-date="dateOptions" ng-model="vm.predioEditar.fechaInicioPago" required>
+                                      <span class="input-group-addon" ng-click="vm.openCalendar2($event)"><i class="fa fa-calendar"></i>
+                                          
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="col-md-2 text-right">
+                                      <label class="control-label">Costo predio</label>
+                              </div>
+                              <div class="col-md-3">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.costoPredio">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Enganche</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-3">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.enganche">
+                              </div>
+                              <div class="col-md-3 text-right">
+                                      <label class="control-label">Subsidio inicial</label>
+                              </div>
+                              <div class="col-md-3">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.subsidio">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Pagos anticipados</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-3">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.pagosAnticipados">
+                              </div>
+                              <div class="col-md-3 text-right">
+                                      <label class="control-label">Saldo insoluto inicial</label>
+                              </div>
+                              <div class="col-md-3">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.saldoInsolutoInicial">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Pago mensual</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-3">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.montoMensual">
+                              </div>
+                              <div class="col-md-3 text-right">
+                                      <label class="control-label">N&uacute;m. mensualidades</label>
+                              </div>
+                              <div class="col-md-3">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.numMensualidades">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Situaci&oacute;n financiera</label>
+                      <div class="col-sm-5">
+                          <select class="form-control m-b" 
+                              ng-model="vm.predioEditar.SituacionFinanciera"
+                              ng-options="situacion as situacion.situacionFinanciera for situacion in vm.listaSituacionFin" required>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Observaciones</label>
+                      <div class="col-sm-10"><textarea class="form-control" ng-model="vm.predioEditar.observacionesFinanciero" rows="3" cols="90"></textarea></div>
+                  </div>
+            </form>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
+      </div>
+</div>;

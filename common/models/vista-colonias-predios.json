@@ -12,8 +12,8 @@
   "properties": {
     "idColonia": {
       "type": "Number",
-      "required": false,
       "id": true,
+      "required": false,
       "length": null,
       "precision": 32,
       "scale": 0,

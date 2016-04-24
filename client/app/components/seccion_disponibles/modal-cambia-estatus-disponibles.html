@@ -1,0 +1,22 @@
+<div class="inmodal">
+      <div class="modal-header">
+          <h4 class="modal-title"> Estatus del predio</h4>
+      </div>
+      <div class="modal-body">
+            <form name="form_datos" class="form-horizontal">
+                  <div class="form-group"><label class="col-sm-2 control-label">Estatus</label>
+                      <div class="col-sm-8">
+                          <select class="form-control m-b" 
+                              ng-model="vm.estatusSelecccionado"
+                              ng-options="estatus as estatus.estatusDisponibles for estatus in vm.listaEstatus" required>
+                          </select>
+                      </div>
+                  </div>
+            </form>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
+      </div>
+</div>;

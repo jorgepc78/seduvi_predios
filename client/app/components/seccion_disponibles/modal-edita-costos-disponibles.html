@@ -1,0 +1,30 @@
+<div class="inmodal">
+      <div class="modal-header">
+          <h4 class="modal-title"> Costos del predio</h4>
+      </div>
+      <div class="modal-body">
+            <form name="form_datos" class="form-horizontal">
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Costo autorizado m<sup>2</sup></label>
+                      <div class="col-sm-8"><input type="number" string-to-number class="form-control" ng-model="vm.predioEditar.costoAutorizadoM2"></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Costo total</label>
+                      <div class="col-sm-8"><input type="number" string-to-number class="form-control" ng-model="vm.predioEditar.totalCosto"></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Costo contable</label>
+                      <div class="col-sm-8"><input type="number" string-to-number class="form-control" ng-model="vm.predioEditar.costoContable"></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Observaciones</label>
+                      <div class="col-sm-8"><textarea class="form-control" ng-model="vm.predioEditar.observacionesDisponibles" rows="4" cols="90"></textarea></div>
+                  </div>
+            </form>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
+      </div>
+</div>;
