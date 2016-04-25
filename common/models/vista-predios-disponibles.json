@@ -241,6 +241,23 @@
       },
       "_selectable": true
     },
+    "idtipoLote": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_tipo_lote",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
     "tipoLote": {
       "type": "String",
       "required": false,

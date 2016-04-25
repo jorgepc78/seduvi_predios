@@ -9,23 +9,35 @@
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
 
-                <li ui-sref-active="active" ng-show="currentUser">
-                    <a ui-sref="index.predios_disponibles"><i class="fa fa-bar-chart"></i> <span class="nav-label">Predios disponibles</span></a>
+                <li ui-sref-active="active" ng-if="currentUser.prediosDisponibles == true">
+                    <a ui-sref="index.predios_disponibles"><i class="fa fa-thumbs-o-up"></i> <span class="nav-label">Predios disponibles</span></a>
                 </li>
 
-                <li ui-sref-active="active" ng-show="currentUser">
-                    <a ui-sref="index.predios_contratados"><i class="fa fa-envelope-o"></i> <span class="nav-label">Predios contratados</span></a>
+                <li ui-sref-active="active" ng-if="currentUser.prediosContratados == true">
+                    <a ui-sref="index.predios_contratados"><i class="fa fa-file-text-o"></i> <span class="nav-label">Predios contratados</span></a>
                 </li>
 
-                <li ui-sref-active="active" ng-show="currentUser">
-                    <a ui-sref="index.predios_titulados"><i class="fa fa-envelope-o"></i> <span class="nav-label">Predios titulados</span></a>
+                <li ui-sref-active="active" ng-if="currentUser.prediosTitulados == true">
+                    <a ui-sref="index.predios_titulados"><i class="fa fa-graduation-cap"></i> <span class="nav-label">Predios titulados</span></a>
                 </li>
 
-                <li ui-sref-active="active" ng-show="currentUser">
-                    <a ui-sref="index.predios_noclasificados"><i class="fa fa-file-text-o"></i> <span class="nav-label">Predios no clasificados</span></a>
+                <li ui-sref-active="active" ng-if="currentUser.prediosNoClasificados == true">
+                    <a ui-sref="index.predios_noclasificados"><i class="fa fa-question-circle"></i> <span class="nav-label">Predios no clasificados</span></a>
                 </li>
 
-                <li class="dropdown" dropdown ng-show="currentUser">
+                <li ui-sref-active="active" ng-if="currentUser.prediosRegistro == true">
+                    <a ui-sref="index.predios_registro"><i class="fa fa-question-circle"></i> <span class="nav-label">Datos generales del predio</span></a>
+                </li>
+
+                <li ui-sref-active="active" ng-if="currentUser.reserva == true">
+                    <a ui-sref="index.reserva"><i class="fa fa-file-text-o"></i> <span class="nav-label">Reserva</span></a>
+                </li>
+
+                <li ui-sref-active="active" ng-if="currentUser.admin == true">
+                    <a ui-sref="index.admin_usuarios"><i class="fa fa-file-text-o"></i> <span class="nav-label">Usuarios</span></a>
+                </li>
+
+                <li class="dropdown" dropdown ng-if="currentUser.admin == true">
                     <a class="dropdown-toggle" href dropdown-toggle><i class="fa fa-bars"></i>Cat&aacute;logos <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
                         <li ui-sref-active="active">

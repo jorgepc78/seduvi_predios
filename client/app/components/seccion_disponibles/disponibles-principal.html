@@ -1,7 +1,4 @@
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2>{{vm.tituloSeccion}}</h2>
-    </div>
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -64,7 +61,7 @@
                                     <th>Colonia</th>
                                     <th>Manzana</th>
                                     <th>Lote</th>
-                                    <th>Subd. lote</th>
+                                    <th>Tipo</th>
                                     <th>Estatus</th>
                                 </tr>
                               </thead>
@@ -75,14 +72,18 @@
                                     <td> {{predio.localidad}}</td>
                                     <td> {{predio.colonia}}</td>
                                     <td> {{predio.manzana}}</td>
-                                    <td> {{predio.lote}}</td>
-                                    <td> {{predio.subdivisionLote}}</td>
-                                    <td class="client-status" ng-switch on="predio.estatusDisponibles">
-
-                                        <span ng-switch-when="NO DEFINIDO"              class="label label-default">{{predio.estatusDisponibles}}</span>
-                                        <span ng-switch-when="DISPONIBLE"               class="label label-info">   {{predio.estatusDisponibles}}</span>
-                                        <span ng-switch-when="COMPROMETIDO"             class="label label-success">{{predio.estatusDisponibles}}</span>
-                                        <span ng-switch-when="EN REVISION DE SITUACION" class="label label-warning">{{predio.estatusDisponibles}}</span>
+                                    <td> {{(predio.subdivisionLote == '' ? predio.lote : predio.lote + '-' + predio.subdivisionLote)}}</td>
+                                    <td class="client-status" ng-switch on="predio.idtipoLote">
+                                        <span ng-switch-when="0" class="label label-default">{{predio.tipoLote}}</span>
+                                        <span ng-switch-when="1" class="label label-danger"> {{predio.tipoLote}}</span>
+                                        <span ng-switch-when="2" class="label label-primary">{{predio.tipoLote}}</span>
+                                        <span ng-switch-when="3" class="label label-warning">{{predio.tipoLote}}</span>
+                                    </td>
+                                    <td class="client-status" ng-switch on="predio.idEstatusDisponibles">
+                                        <span ng-switch-when="0" class="label label-default">{{predio.estatusDisponibles}}</span>
+                                        <span ng-switch-when="1" class="label label-info">   {{predio.estatusDisponibles}}</span>
+                                        <span ng-switch-when="2" class="label label-success">{{predio.estatusDisponibles}}</span>
+                                        <span ng-switch-when="3" class="label label-warning">{{predio.estatusDisponibles}}</span>
                                     </td>
                                 </tr>
                               </tbody>
@@ -130,11 +131,20 @@
                                                                 Identificador del predio (IDP)
                                                             </li>
                                                             <li class="list-group-item">
-                                                                <span class="pull-right" ng-switch on="vm.predioSeleccionado.estatusDisponibles">
-                                                                    <span ng-switch-when="NO DEFINIDO"              class="label label-default">{{vm.predioSeleccionado.estatusDisponibles}}</span>
-                                                                    <span ng-switch-when="DISPONIBLE"               class="label label-info">   {{vm.predioSeleccionado.estatusDisponibles}}</span>
-                                                                    <span ng-switch-when="COMPROMETIDO"             class="label label-success">{{vm.predioSeleccionado.estatusDisponibles}}</span>
-                                                                    <span ng-switch-when="EN REVISION DE SITUACION" class="label label-warning">{{vm.predioSeleccionado.estatusDisponibles}}</span>
+                                                                <span class="pull-right" ng-switch on="vm.predioSeleccionado.idtipoLote">
+                                                                    <span ng-switch-when="0" class="label label-default">{{vm.predioSeleccionado.tipoLote}}</span>
+                                                                    <span ng-switch-when="1" class="label label-danger"> {{vm.predioSeleccionado.tipoLote}}</span>
+                                                                    <span ng-switch-when="2" class="label label-primary">{{vm.predioSeleccionado.tipoLote}}</span>
+                                                                    <span ng-switch-when="3" class="label label-warning">{{vm.predioSeleccionado.tipoLote}}</span>
+                                                                </span>
+                                                                Tipo de lote
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right" ng-switch on="vm.predioSeleccionado.idEstatusDisponibles">
+                                                                    <span ng-switch-when="0" class="label label-default">{{vm.predioSeleccionado.estatusDisponibles}}</span>
+                                                                    <span ng-switch-when="1" class="label label-info">   {{vm.predioSeleccionado.estatusDisponibles}}</span>
+                                                                    <span ng-switch-when="2" class="label label-success">{{vm.predioSeleccionado.estatusDisponibles}}</span>
+                                                                    <span ng-switch-when="3" class="label label-warning">{{vm.predioSeleccionado.estatusDisponibles}}</span>
                                                                 </span>
                                                                 Estatus
                                                             </li>
@@ -155,7 +165,7 @@
                                                                 Manzana
                                                             </li>
                                                             <li class="list-group-item">
-                                                                <span class="pull-right"> {{vm.predioSeleccionado.lote}} </span>
+                                                                <span class="pull-right"> {{(vm.predioSeleccionado.subdivisionLote == '' ? vm.predioSeleccionado.lote : vm.predioSeleccionado.lote + '-' + vm.predioSeleccionado.subdivisionLote)}} </span>
                                                                 Lote
                                                             </li>
                                                             <li style="height: 80px" class="list-group-item">
@@ -167,12 +177,12 @@
                                                                 Clave catastral
                                                             </li>
                                                             <li class="list-group-item">
-                                                                <span class="pull-right"> {{vm.predioSeleccionado.superficie | number}} mts<sup>2</sup></span>
-                                                                Superficie legal
-                                                            </li>
-                                                            <li class="list-group-item">
                                                                 <span class="pull-right"> {{vm.predioSeleccionado.folioElectronicoRpp}} </span>
                                                                 Folio RPP
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right"> {{vm.predioSeleccionado.superficie | number}} mts<sup>2</sup></span>
+                                                                Superficie legal
                                                             </li>
                                                             <li style="height: 80px" class="list-group-item">
                                                                 <span class="pull-right" style="width: 300px;text-align: right;"> {{vm.predioSeleccionado.observacionesPredio}} </span>
@@ -189,7 +199,7 @@
                                                                     <button type="button" ng-click="vm.cambia_estatus_disponibles(vm.predioSeleccionado)" class="btn btn-primary btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Cambiar el estatus</button>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <button type="button" ng-click="vm.mueve_predios_contratados(vm.predioSeleccionado)" class="btn btn-danger btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-trash-o"></i></span> Mover a contratados</button>
+                                                                    <button type="button" ng-click="vm.mueve_predios_contratados(vm.predioSeleccionado)" class="btn btn-danger btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-arrow-right"></i></span> Mover a contratados</button>
                                                                 </div>
                                                     </div>
                                                 </div>
@@ -218,7 +228,7 @@
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-md-12 text-center">
-                                                        <button type="button" ng-click="vm.editar_costo_predio(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-trash-o"></i></span> Editar costos</button>
+                                                        <button type="button" ng-click="vm.editar_costo_predio(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar costos</button>
                                                     </div>
                                                 </div>
 

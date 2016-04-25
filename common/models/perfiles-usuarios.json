@@ -10,6 +10,23 @@
     "table": "perfiles_usuarios"
   },
   "properties": {
+    "idPerfil": {
+      "type": "Number",
+      "id": true,
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_perfil",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
     "descripcionPerfil": {
       "type": "String",
       "required": false,
@@ -66,6 +83,22 @@
       "scale": null,
       "postgresql": {
         "columnName": "predios_contratados",
+        "dataType": "boolean",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "edicionContratadosBeneficiario": {
+      "type": "Boolean",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "edicion_contratados_beneficiario",
         "dataType": "boolean",
         "dataLength": null,
         "dataPrecision": null,
@@ -186,26 +219,26 @@
       },
       "_selectable": true
     },
-    "idPerfil": {
-      "type": "Number",
-      "id": true,
+    "prediosRegistro": {
+      "type": "Boolean",
       "required": false,
       "length": null,
-      "precision": 32,
-      "scale": 0,
+      "precision": null,
+      "scale": null,
       "postgresql": {
-        "columnName": "id_perfil",
-        "dataType": "integer",
+        "columnName": "predios_registro",
+        "dataType": "boolean",
         "dataLength": null,
-        "dataPrecision": 32,
-        "dataScale": 0,
-        "nullable": "NO"
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
       },
-      "_selectable": false
+      "_selectable": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+  },
   "acls": [],
   "methods": {}
 }

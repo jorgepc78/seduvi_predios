@@ -29,28 +29,64 @@
             Usuarios
             .login({
                 username: vm.user.username,
-                password: vm.user.password,
-                include: [
-                    'user',
-                    {
-                        relation: 'perfil_usuario'
-                    }
-                ]
+                password: vm.user.password
             })
             .$promise
             .then(function(response) {
 
-                $rootScope.currentUser = {
-                    idUsuarios        : response.user.idUsuarios,
-                    tokenId           : response.id,
-                    nombres           : response.user.nombres,
-                    apellidos         : response.user.apellidos,
-                    creditoDisponible : response.user.creditoDisponible,
-                    estatus           : 200
-                };
-                localStorageService.set('usuario', $rootScope.currentUser);
-                $state.go('index.predios_disponibles');
+                    Usuarios.findById({ 
+                        id: response.userId,
+                        filter: {
+                              fields: ['id','idPerfil','nombreCompleto','area'],
+                              include: [
+                                {
+                                    relation: 'perfil_usuario',
+                                    scope: {
+                                        fields:['edicionContratadosBeneficiario','edicionContratadosFinanciero','edicionContratadosJuridico','edicionPrediosDisponibles','edicionPrediosTitulados','edicionReserva','prediosContratados','prediosDisponibles','prediosNoClasificados','prediosTitulados','reserva','prediosRegistro']
+                                    }
+                                }
+                              ]
+                        }
+                    })
+                    .$promise
+                    .then(function(usuario) {
+                            $rootScope.currentUser = {
+                                id_usuario                     : usuario.id,
+                                nombreCompleto                 : usuario.nombreCompleto,
+                                area                           : usuario.area,
+                                prediosDisponibles             : usuario.perfil_usuario.prediosDisponibles,
+                                edicionPrediosDisponibles      : usuario.perfil_usuario.edicionPrediosDisponibles,
+                                prediosContratados             : usuario.perfil_usuario.prediosContratados,
+                                edicionContratadosBeneficiario : usuario.perfil_usuario.edicionContratadosBeneficiario,
+                                edicionContratadosFinanciero   : usuario.perfil_usuario.edicionContratadosFinanciero,
+                                edicionContratadosJuridico     : usuario.perfil_usuario.edicionContratadosJuridico,
+                                prediosTitulados               : usuario.perfil_usuario.prediosTitulados,
+                                edicionPrediosTitulados        : usuario.perfil_usuario.edicionPrediosTitulados,
+                                prediosNoClasificados          : usuario.perfil_usuario.prediosNoClasificados,
+                                reserva                        : usuario.perfil_usuario.reserva,
+                                edicionReserva                 : usuario.perfil_usuario.edicionReserva,
+                                prediosRegistro                : usuario.perfil_usuario.prediosRegistro,
+                                admin                          : (usuario.perfil_usuario.idPerfil == 0 ? true : false),
+                                estatus                        : 200
+                            };
+                            localStorageService.set('usuario', $rootScope.currentUser);
+                            
+                            if(usuario.perfil_usuario.idPerfil == 0)
+                                $state.go('index.admin_usuarios');
+                            else if(usuario.perfil_usuario.prediosDisponibles == true)
+                                $state.go('index.predios_disponibles');
+                            else if(usuario.perfil_usuario.prediosContratados == true)
+                                $state.go('index.predios_contratados');
+                            else if(usuario.perfil_usuario.prediosTitulados == true)
+                                $state.go('index.predios_titulados');
+                            else if(usuario.perfil_usuario.prediosNoClasificados == true)
+                                $state.go('index.predios_noclasificados');
+                            else if(usuario.perfil_usuario.reserva == true)
+                                $state.go('index.reserva');
+                            else if(usuario.perfil_usuario.prediosRegistro == true)
+                                $state.go('index.predios_registro');
 
+                    });
             })
             .catch(function(error) {
                 if(error.status == 401) {

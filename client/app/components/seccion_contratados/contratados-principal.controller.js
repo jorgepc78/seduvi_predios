@@ -3,11 +3,11 @@
 
     angular
         .module('seduvi_inv_predios')
-        .controller('DisponiblesPrincipalController', DisponiblesPrincipalController);
+        .controller('ContratadosPrincipalController', ContratadosPrincipalController);
 
-    DisponiblesPrincipalController.$inject = ['$timeout', '$modal', 'tablaDatosService', 'CatMunicipios', 'VistaLocalidadesPredios', 'VistaColoniasPredios', 'VistaPrediosDisponibles'];
+    ContratadosPrincipalController.$inject = ['$rootScope', '$timeout', '$modal', 'tablaDatosService', 'CatMunicipios', 'VistaLocalidadesPredios', 'VistaColoniasPredios', 'VistaPrediosContratados'];
 
-    function DisponiblesPrincipalController($timeout, $modal, tablaDatosService, CatMunicipios, VistaLocalidadesPredios, VistaColoniasPredios, VistaPrediosDisponibles ) {
+    function ContratadosPrincipalController($rootScope, $timeout, $modal, tablaDatosService, CatMunicipios, VistaLocalidadesPredios, VistaColoniasPredios, VistaPrediosContratados ) {
 
             var vm = this;
             vm.listaMunicipios = [{claveMunicipio: 0, nombreMunicipio: 'Estado'}];
@@ -17,6 +17,10 @@
             vm.localidadSeleccionada = undefined;
             vm.coloniaSeleccionada = undefined;
             vm.mapa = { MapaUbicacionPredio: undefined};
+
+            vm.edicionContratadosBeneficiario = $rootScope.currentUser.edicionContratadosBeneficiario;
+            vm.edicionContratadosFinanciero = $rootScope.currentUser.edicionContratadosFinanciero;
+            vm.edicionContratadosJuridico = $rootScope.currentUser.edicionContratadosJuridico;
 
             vm.muestra_predios_municipio = muestra_predios_municipio;
             vm.muestra_predios_localidad = muestra_predios_localidad;
@@ -61,6 +65,50 @@
 
             function inicia() {
 
+                  vm.DibujoPredio = new google.maps.Polygon({
+                      strokeColor: "#FF0000",
+                      strokeOpacity: 0.8,
+                      strokeWeight: 2,
+                      fillColor: "#FF0000",
+                      fillOpacity: 0.35
+                  });
+
+                  var boxText = document.createElement("div");
+                  boxText.style.cssText = "border: 1px solid gray; margin-top: 8px; background: #FFFFFF; padding: 5px; color:black;";
+                  boxText.innerHTML = "";
+
+                  var myOptions = {
+                           content: boxText
+                          ,disableAutoPan: false
+                          ,maxWidth: 0
+                          ,pixelOffset: new google.maps.Size(-60, 20)
+                          ,zIndex: null
+                          ,boxStyle: { 
+                            background: "url('assets/img/tipbox.gif') no-repeat"
+                            ,opacity: 0.75
+                            ,width: "110px"
+                           }
+                          ,closeBoxMargin: "10px 2px 2px 2px"
+                          ,closeBoxURL: "assets/img/cerrar.png"
+                          ,infoBoxClearance: new google.maps.Size(1, 1)
+                          ,isHidden: false
+                          ,pane: "floatPane"
+                          ,enableEventPropagation: false
+                  };
+
+                  vm.marker = new google.maps.Marker({
+                      map: vm.mapa.MapaUbicacionPredio,
+                      draggable: false,
+                      position: new google.maps.LatLng(18.520766802, -88.299891532),
+                      visible: false
+                  });
+
+                  google.maps.event.addListener(vm.DibujoPredio, "click", function (e) {
+                      vm.infoPredio.open(vm.mapa.MapaUbicacionPredio, vm.marker);
+                  });
+
+                  vm.infoPredio = new InfoBox(myOptions);
+
                   CatMunicipios.find({
                       filter: {
                             order: ['claveMunicipio ASC']
@@ -97,7 +145,7 @@
                   vm.tablaListaPredios.fila_seleccionada = undefined;
                   vm.client = 1;
 
-                  tablaDatosService.obtiene_datos_tabla(VistaPrediosDisponibles, vm.tablaListaPredios)
+                  tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
                   .then(function(respuesta) {
 
                         vm.tablaListaPredios.totalElementos = respuesta.total_registros;
@@ -117,51 +165,6 @@
                             }, 1000);
                         }
                   });
-
-                            vm.DibujoPredio = new google.maps.Polygon({
-                                strokeColor: "#FF0000",
-                                strokeOpacity: 0.8,
-                                strokeWeight: 2,
-                                fillColor: "#FF0000",
-                                fillOpacity: 0.35
-                            });
-
-                            var boxText = document.createElement("div");
-                            boxText.style.cssText = "border: 1px solid gray; margin-top: 8px; background: #FFFFFF; padding: 5px; color:black;";
-                            boxText.innerHTML = "";
-
-                            var myOptions = {
-                                     content: boxText
-                                    ,disableAutoPan: false
-                                    ,maxWidth: 0
-                                    ,pixelOffset: new google.maps.Size(-60, 20)
-                                    ,zIndex: null
-                                    ,boxStyle: { 
-                                      background: "url('assets/img/tipbox.gif') no-repeat"
-                                      ,opacity: 0.75
-                                      ,width: "110px"
-                                     }
-                                    ,closeBoxMargin: "10px 2px 2px 2px"
-                                    ,closeBoxURL: "assets/img/cerrar.png"
-                                    ,infoBoxClearance: new google.maps.Size(1, 1)
-                                    ,isHidden: false
-                                    ,pane: "floatPane"
-                                    ,enableEventPropagation: false
-                            };
-
-                            vm.marker = new google.maps.Marker({
-                                map: vm.mapa.MapaUbicacionPredio,
-                                draggable: false,
-                                position: new google.maps.LatLng(18.520766802, -88.299891532),
-                                visible: false
-                            });
-
-                            google.maps.event.addListener(vm.DibujoPredio, "click", function (e) {
-                                infoPredio.open(vm.mapa.MapaUbicacionPredio, vm.marker);
-                            });
-
-                            vm.infoPredio = new InfoBox(myOptions);
-
 
             }
 
@@ -190,7 +193,7 @@
                             filter: {
                                   where: {
                                       and: [
-                                        {'prediosDisponibles': {gt: 0}},
+                                        {'prediosContratados': {gt: 0}},
                                         {'claveMunicipio':vm.municipioSeleccionado.claveMunicipio}
                                       ]                              
                                   },
@@ -207,7 +210,7 @@
                             filter: {
                                   where: {
                                       and: [
-                                        {'prediosDisponibles': {gt: 0}},
+                                        {'prediosContratados': {gt: 0}},
                                         {'claveMunicipio':vm.municipioSeleccionado.claveMunicipio}
                                       ]                              
                                   },
@@ -224,7 +227,7 @@
                   }
 
 
-                  tablaDatosService.obtiene_datos_tabla(VistaPrediosDisponibles, vm.tablaListaPredios)
+                  tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
                   .then(function(respuesta) {
 
                         vm.tablaListaPredios.totalElementos = respuesta.total_registros;
@@ -268,7 +271,7 @@
                       vm.tablaListaPredios.condicion = { idLocalidad: vm.localidadSeleccionada.idLocalidad};
 
 
-                  tablaDatosService.obtiene_datos_tabla(VistaPrediosDisponibles, vm.tablaListaPredios)
+                  tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
                   .then(function(respuesta) {
 
                         vm.tablaListaPredios.totalElementos = respuesta.total_registros;
@@ -311,7 +314,7 @@
                       vm.tablaListaPredios.condicion = { idColonia: vm.coloniaSeleccionada.idColonia};
 
 
-                  tablaDatosService.obtiene_datos_tabla(VistaPrediosDisponibles, vm.tablaListaPredios)
+                  tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
                   .then(function(respuesta) {
 
                         vm.tablaListaPredios.totalElementos = respuesta.total_registros;
@@ -374,7 +377,7 @@
 
                   }
 
-                  tablaDatosService.obtiene_datos_tabla(VistaPrediosDisponibles, vm.tablaListaPredios)
+                  tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
                   .then(function(respuesta) {
 
                         vm.tablaListaPredios.totalElementos = respuesta.total_registros;
@@ -422,7 +425,7 @@
                       vm.tablaListaPredios.condicion = { idColonia: vm.coloniaSeleccionada.idColonia};
                   
 
-                  tablaDatosService.obtiene_datos_tabla(VistaPrediosDisponibles, vm.tablaListaPredios)
+                  tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
                   .then(function(respuesta) {
 
                         vm.tablaListaPredios.totalElementos = respuesta.total_registros;
@@ -453,7 +456,7 @@
 
                   if(vm.tablaListaPredios.totalElementos > 0)
                   {
-                        tablaDatosService.cambia_pagina(VistaPrediosDisponibles, vm.tablaListaPredios)
+                        tablaDatosService.cambia_pagina(VistaPrediosContratados, vm.tablaListaPredios)
                         .then(function(respuesta) {
 
                             vm.tablaListaPredios.inicio = respuesta.inicio;
@@ -486,6 +489,32 @@
                             vm.marker.setMap(null);
                             vm.infoPredio.close();
                             vm.DibujoPredio.setMap(null);
+
+                            if(vm.predioSeleccionado.idtipoLote == 0) {
+                                vm.DibujoPredio = new google.maps.Polygon({
+                                    strokeColor: "#d1dade", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#d1dade", fillOpacity: 0.35
+                                });
+                            }
+                            else if(vm.predioSeleccionado.idtipoLote == 1) {
+                                vm.DibujoPredio = new google.maps.Polygon({
+                                    strokeColor: "#FF0000", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#FF0000", fillOpacity: 0.35
+                                });
+                            }
+                            else if(vm.predioSeleccionado.idtipoLote == 2) {
+                                vm.DibujoPredio = new google.maps.Polygon({
+                                    strokeColor: "#1ab394", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#1ab394", fillOpacity: 0.35
+                                });
+                            }
+                            else if(vm.predioSeleccionado.idtipoLote == 3) {
+                                vm.DibujoPredio = new google.maps.Polygon({
+                                    strokeColor: "#f7a54a", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#f7a54a", fillOpacity: 0.35
+                                });
+                            }
+
+                            google.maps.event.addListener(vm.DibujoPredio, "click", function (e) {
+                                vm.infoPredio.open(vm.mapa.MapaUbicacionPredio, vm.marker);
+                            });
+
 
                             var CoordenadasPredio = [];
                             var bounds = new google.maps.LatLngBounds();

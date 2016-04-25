@@ -170,6 +170,23 @@
       },
       "_selectable": true
     },
+    "idtipoLote": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_tipo_lote",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
     "tipoLote": {
       "type": "String",
       "required": false,
@@ -474,6 +491,23 @@
       },
       "_selectable": true
     },
+    "idModalidadPrograma": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_modalidad_programa",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
     "modalidadPrograma": {
       "type": "String",
       "required": false,
@@ -489,6 +523,23 @@
         "nullable": "YES"
       },
       "_selectable": true
+    },
+    "idDocumentoAsignacion": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_documento_asignacion",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
     },
     "documentoAsignacion": {
       "type": "String",
@@ -714,6 +765,23 @@
       },
       "_selectable": true
     },
+    "idSituacionFinanciera": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_situacion_financiera",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
     "situacionFinanciera": {
       "type": "String",
       "required": false,
@@ -745,6 +813,23 @@
         "nullable": "YES"
       },
       "_selectable": true
+    },
+    "idSituacionJuridica": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_situacion_juridica",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
     },
     "situacionJuridica": {
       "type": "String",
@@ -863,7 +948,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "nodos_poligono": {
+      "type": "hasMany",
+      "model": "VistaGeomPredios",
+      "foreignKey": "idp"
+    }
+  },
   "acls": [],
   "methods": {}
 }

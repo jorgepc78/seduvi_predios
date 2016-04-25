@@ -162,6 +162,12 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use Usuarios.perfil_usuario() instead.
+        "prototype$__get__perfil_usuario": {
+          url: urlBase + "/Usuarios/:id/perfil_usuario",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Usuarios#prototype$__get__accessTokens
@@ -1109,6 +1115,42 @@ module.factory(
     */
     R.modelName = "Usuarios";
 
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Usuarios#perfil_usuario
+         * @methodOf lbServices.Usuarios
+         *
+         * @description
+         *
+         * Fetches belongsTo relation perfil_usuario.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PerfilesUsuarios` object.)
+         * </em>
+         */
+        R.perfil_usuario = function() {
+          var TargetResource = $injector.get("PerfilesUsuarios");
+          var action = TargetResource["::get::Usuarios::perfil_usuario"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -11486,6 +11528,65 @@ module.factory(
           url: urlBase + "/VistaPrediosDisponibles/:id/nodos_poligono/count",
           method: "GET"
         },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.findById() instead.
+        "::findById::VistaPrediosContratados::nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.destroyById() instead.
+        "::destroyById::VistaPrediosContratados::nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.updateById() instead.
+        "::updateById::VistaPrediosContratados::nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono() instead.
+        "::get::VistaPrediosContratados::nodos_poligono": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.create() instead.
+        "::create::VistaPrediosContratados::nodos_poligono": {
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono",
+          method: "POST"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.createMany() instead.
+        "::createMany::VistaPrediosContratados::nodos_poligono": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono",
+          method: "POST"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.destroyAll() instead.
+        "::delete::VistaPrediosContratados::nodos_poligono": {
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.count() instead.
+        "::count::VistaPrediosContratados::nodos_poligono": {
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/count",
+          method: "GET"
+        },
       }
     );
 
@@ -12579,6 +12680,598 @@ module.factory(
 
 /**
  * @ngdoc object
+ * @name lbServices.VistaLocalidadesPredios
+ * @header lbServices.VistaLocalidadesPredios
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `VistaLocalidadesPredios` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "VistaLocalidadesPredios",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/VistaLocalidadesPredios/:id",
+      { 'id': '@id' },
+      {
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#create
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/VistaLocalidadesPredios",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#createMany
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/VistaLocalidadesPredios",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#upsert
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/VistaLocalidadesPredios",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#exists
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/VistaLocalidadesPredios/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#findById
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/VistaLocalidadesPredios/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#find
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/VistaLocalidadesPredios",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#findOne
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/VistaLocalidadesPredios/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#updateAll
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/VistaLocalidadesPredios/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#deleteById
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/VistaLocalidadesPredios/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#count
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/VistaLocalidadesPredios/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#prototype$updateAttributes
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/VistaLocalidadesPredios/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#createChangeStream
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/VistaLocalidadesPredios/change-stream",
+          method: "POST"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#updateOrCreate
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#update
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#destroyById
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaLocalidadesPredios#removeById
+         * @methodOf lbServices.VistaLocalidadesPredios
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.VistaLocalidadesPredios#modelName
+    * @propertyOf lbServices.VistaLocalidadesPredios
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `VistaLocalidadesPredios`.
+    */
+    R.modelName = "VistaLocalidadesPredios";
+
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
  * @name lbServices.VistaColoniasPredios
  * @header lbServices.VistaColoniasPredios
  * @object
@@ -13171,13 +13864,13 @@ module.factory(
 
 /**
  * @ngdoc object
- * @name lbServices.VistaLocalidadesPredios
- * @header lbServices.VistaLocalidadesPredios
+ * @name lbServices.PerfilesUsuarios
+ * @header lbServices.PerfilesUsuarios
  * @object
  *
  * @description
  *
- * A $resource object for interacting with the `VistaLocalidadesPredios` model.
+ * A $resource object for interacting with the `PerfilesUsuarios` model.
  *
  * ## Example
  *
@@ -13187,17 +13880,17 @@ module.factory(
  *
  */
 module.factory(
-  "VistaLocalidadesPredios",
+  "PerfilesUsuarios",
   ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
     var R = Resource(
-      urlBase + "/VistaLocalidadesPredios/:id",
+      urlBase + "/PerfilesUsuarios/:id",
       { 'id': '@id' },
       {
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#create
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#create
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13224,18 +13917,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "create": {
-          url: urlBase + "/VistaLocalidadesPredios",
+          url: urlBase + "/PerfilesUsuarios",
           method: "POST"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#createMany
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#createMany
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13262,19 +13955,19 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "createMany": {
           isArray: true,
-          url: urlBase + "/VistaLocalidadesPredios",
+          url: urlBase + "/PerfilesUsuarios",
           method: "POST"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#upsert
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#upsert
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13301,18 +13994,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "upsert": {
-          url: urlBase + "/VistaLocalidadesPredios",
+          url: urlBase + "/PerfilesUsuarios",
           method: "PUT"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#exists
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#exists
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13337,14 +14030,14 @@ module.factory(
          *  - `exists` – `{boolean=}` - 
          */
         "exists": {
-          url: urlBase + "/VistaLocalidadesPredios/:id/exists",
+          url: urlBase + "/PerfilesUsuarios/:id/exists",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#findById
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#findById
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13368,18 +14061,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "findById": {
-          url: urlBase + "/VistaLocalidadesPredios/:id",
+          url: urlBase + "/PerfilesUsuarios/:id",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#find
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#find
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13401,19 +14094,19 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "find": {
           isArray: true,
-          url: urlBase + "/VistaLocalidadesPredios",
+          url: urlBase + "/PerfilesUsuarios",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#findOne
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#findOne
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13435,18 +14128,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "findOne": {
-          url: urlBase + "/VistaLocalidadesPredios/findOne",
+          url: urlBase + "/PerfilesUsuarios/findOne",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#updateAll
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#updateAll
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13473,14 +14166,14 @@ module.factory(
          * The number of instances updated
          */
         "updateAll": {
-          url: urlBase + "/VistaLocalidadesPredios/update",
+          url: urlBase + "/PerfilesUsuarios/update",
           method: "POST"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#deleteById
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#deleteById
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13502,18 +14195,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "deleteById": {
-          url: urlBase + "/VistaLocalidadesPredios/:id",
+          url: urlBase + "/PerfilesUsuarios/:id",
           method: "DELETE"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#count
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#count
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13538,14 +14231,14 @@ module.factory(
          *  - `count` – `{number=}` - 
          */
         "count": {
-          url: urlBase + "/VistaLocalidadesPredios/count",
+          url: urlBase + "/PerfilesUsuarios/count",
           method: "GET"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#prototype$updateAttributes
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#prototype$updateAttributes
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13571,18 +14264,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         "prototype$updateAttributes": {
-          url: urlBase + "/VistaLocalidadesPredios/:id",
+          url: urlBase + "/PerfilesUsuarios/:id",
           method: "PUT"
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#createChangeStream
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#createChangeStream
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13612,8 +14305,14 @@ module.factory(
          *  - `changes` – `{ReadableStream=}` - 
          */
         "createChangeStream": {
-          url: urlBase + "/VistaLocalidadesPredios/change-stream",
+          url: urlBase + "/PerfilesUsuarios/change-stream",
           method: "POST"
+        },
+
+        // INTERNAL. Use Usuarios.perfil_usuario() instead.
+        "::get::Usuarios::perfil_usuario": {
+          url: urlBase + "/Usuarios/:id/perfil_usuario",
+          method: "GET"
         },
       }
     );
@@ -13622,8 +14321,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#updateOrCreate
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#updateOrCreate
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13650,15 +14349,15 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         R["updateOrCreate"] = R["upsert"];
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#update
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#update
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13688,8 +14387,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#destroyById
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#destroyById
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13711,15 +14410,15 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         R["destroyById"] = R["deleteById"];
 
         /**
          * @ngdoc method
-         * @name lbServices.VistaLocalidadesPredios#removeById
-         * @methodOf lbServices.VistaLocalidadesPredios
+         * @name lbServices.PerfilesUsuarios#removeById
+         * @methodOf lbServices.PerfilesUsuarios
          *
          * @description
          *
@@ -13741,7 +14440,7 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `VistaLocalidadesPredios` object.)
+         * This usually means the response is a `PerfilesUsuarios` object.)
          * </em>
          */
         R["removeById"] = R["deleteById"];
@@ -13749,13 +14448,1550 @@ module.factory(
 
     /**
     * @ngdoc property
-    * @name lbServices.VistaLocalidadesPredios#modelName
-    * @propertyOf lbServices.VistaLocalidadesPredios
+    * @name lbServices.PerfilesUsuarios#modelName
+    * @propertyOf lbServices.PerfilesUsuarios
     * @description
     * The name of the model represented by this $resource,
-    * i.e. `VistaLocalidadesPredios`.
+    * i.e. `PerfilesUsuarios`.
     */
-    R.modelName = "VistaLocalidadesPredios";
+    R.modelName = "PerfilesUsuarios";
+
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.VistaPrediosContratados
+ * @header lbServices.VistaPrediosContratados
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `VistaPrediosContratados` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "VistaPrediosContratados",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/VistaPrediosContratados/:id",
+      { 'id': '@id' },
+      {
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.findById() instead.
+        "prototype$__findById__nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.destroyById() instead.
+        "prototype$__destroyById__nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.updateById() instead.
+        "prototype$__updateById__nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono() instead.
+        "prototype$__get__nodos_poligono": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.create() instead.
+        "prototype$__create__nodos_poligono": {
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono",
+          method: "POST"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.destroyAll() instead.
+        "prototype$__delete__nodos_poligono": {
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosContratados.nodos_poligono.count() instead.
+        "prototype$__count__nodos_poligono": {
+          url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#create
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/VistaPrediosContratados",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#createMany
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosContratados",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#upsert
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/VistaPrediosContratados",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#exists
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/VistaPrediosContratados/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#findById
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/VistaPrediosContratados/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#find
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosContratados",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#findOne
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/VistaPrediosContratados/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#updateAll
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/VistaPrediosContratados/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#deleteById
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/VistaPrediosContratados/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#count
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/VistaPrediosContratados/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#prototype$updateAttributes
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/VistaPrediosContratados/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#createChangeStream
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/VistaPrediosContratados/change-stream",
+          method: "POST"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#updateOrCreate
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#update
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#destroyById
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#removeById
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosContratados` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.VistaPrediosContratados#modelName
+    * @propertyOf lbServices.VistaPrediosContratados
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `VistaPrediosContratados`.
+    */
+    R.modelName = "VistaPrediosContratados";
+
+    /**
+     * @ngdoc object
+     * @name lbServices.VistaPrediosContratados.nodos_poligono
+     * @header lbServices.VistaPrediosContratados.nodos_poligono
+     * @object
+     * @description
+     *
+     * The object `VistaPrediosContratados.nodos_poligono` groups methods
+     * manipulating `VistaGeomPredios` instances related to `VistaPrediosContratados`.
+     *
+     * Call {@link lbServices.VistaPrediosContratados#nodos_poligono VistaPrediosContratados.nodos_poligono()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados#nodos_poligono
+         * @methodOf lbServices.VistaPrediosContratados
+         *
+         * @description
+         *
+         * Queries nodos_poligono of VistaPrediosContratados.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::get::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados.nodos_poligono#count
+         * @methodOf lbServices.VistaPrediosContratados.nodos_poligono
+         *
+         * @description
+         *
+         * Counts nodos_poligono of VistaPrediosContratados.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.nodos_poligono.count = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::count::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados.nodos_poligono#create
+         * @methodOf lbServices.VistaPrediosContratados.nodos_poligono
+         *
+         * @description
+         *
+         * Creates a new instance in nodos_poligono of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.create = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::create::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados.nodos_poligono#createMany
+         * @methodOf lbServices.VistaPrediosContratados.nodos_poligono
+         *
+         * @description
+         *
+         * Creates a new instance in nodos_poligono of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.createMany = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::createMany::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados.nodos_poligono#destroyAll
+         * @methodOf lbServices.VistaPrediosContratados.nodos_poligono
+         *
+         * @description
+         *
+         * Deletes all nodos_poligono of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.nodos_poligono.destroyAll = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::delete::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados.nodos_poligono#destroyById
+         * @methodOf lbServices.VistaPrediosContratados.nodos_poligono
+         *
+         * @description
+         *
+         * Delete a related item by id for nodos_poligono.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for nodos_poligono
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.nodos_poligono.destroyById = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::destroyById::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados.nodos_poligono#findById
+         * @methodOf lbServices.VistaPrediosContratados.nodos_poligono
+         *
+         * @description
+         *
+         * Find a related item by id for nodos_poligono.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for nodos_poligono
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.findById = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::findById::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosContratados.nodos_poligono#updateById
+         * @methodOf lbServices.VistaPrediosContratados.nodos_poligono
+         *
+         * @description
+         *
+         * Update a related item by id for nodos_poligono.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for nodos_poligono
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.updateById = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::updateById::VistaPrediosContratados::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.VistaPrediosTitulacion
+ * @header lbServices.VistaPrediosTitulacion
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `VistaPrediosTitulacion` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "VistaPrediosTitulacion",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/VistaPrediosTitulacions/:id",
+      { 'id': '@id' },
+      {
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#create
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/VistaPrediosTitulacions",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#createMany
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosTitulacions",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#upsert
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/VistaPrediosTitulacions",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#exists
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/VistaPrediosTitulacions/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#findById
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/VistaPrediosTitulacions/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#find
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosTitulacions",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#findOne
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/VistaPrediosTitulacions/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#updateAll
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/VistaPrediosTitulacions/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#deleteById
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/VistaPrediosTitulacions/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#count
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/VistaPrediosTitulacions/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#prototype$updateAttributes
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/VistaPrediosTitulacions/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#createChangeStream
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/VistaPrediosTitulacions/change-stream",
+          method: "POST"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#updateOrCreate
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#update
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#destroyById
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#removeById
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaPrediosTitulacion` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.VistaPrediosTitulacion#modelName
+    * @propertyOf lbServices.VistaPrediosTitulacion
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `VistaPrediosTitulacion`.
+    */
+    R.modelName = "VistaPrediosTitulacion";
 
 
     return R;

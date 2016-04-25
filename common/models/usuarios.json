@@ -75,11 +75,18 @@
   "validations": [],
   "relations": {
     "perfil_usuario": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "PerfilesUsuarios",
       "foreignKey": "idPerfil"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }
