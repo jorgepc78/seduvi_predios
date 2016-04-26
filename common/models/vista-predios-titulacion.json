@@ -586,86 +586,6 @@
       },
       "_selectable": true
     },
-    "enganche": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 53,
-      "scale": null,
-      "postgresql": {
-        "columnName": "enganche",
-        "dataType": "double precision",
-        "dataLength": null,
-        "dataPrecision": 53,
-        "dataScale": null,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
-    "subsidio": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 53,
-      "scale": null,
-      "postgresql": {
-        "columnName": "subsidio",
-        "dataType": "double precision",
-        "dataLength": null,
-        "dataPrecision": 53,
-        "dataScale": null,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
-    "pagosAnticipados": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 53,
-      "scale": null,
-      "postgresql": {
-        "columnName": "pagos_anticipados",
-        "dataType": "double precision",
-        "dataLength": null,
-        "dataPrecision": 53,
-        "dataScale": null,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
-    "saldoInsolutoInicial": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 53,
-      "scale": null,
-      "postgresql": {
-        "columnName": "saldo_insoluto_inicial",
-        "dataType": "double precision",
-        "dataLength": null,
-        "dataPrecision": 53,
-        "dataScale": null,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
-    "montoMensual": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 53,
-      "scale": null,
-      "postgresql": {
-        "columnName": "monto_mensual",
-        "dataType": "double precision",
-        "dataLength": null,
-        "dataPrecision": 53,
-        "dataScale": null,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
     "numMensualidades": {
       "type": "Number",
       "required": false,
@@ -678,6 +598,22 @@
         "dataLength": null,
         "dataPrecision": 53,
         "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idSituacionFinanciera": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_situacion_financiera",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
         "nullable": "YES"
       },
       "_selectable": true
@@ -812,7 +748,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "nodos_poligono": {
+      "type": "hasMany",
+      "model": "VistaGeomPredios",
+      "foreignKey": "idp"
+    }
+  },
   "acls": [],
   "methods": {}
 }

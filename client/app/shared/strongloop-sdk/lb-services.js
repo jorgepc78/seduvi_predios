@@ -11587,6 +11587,65 @@ module.factory(
           url: urlBase + "/VistaPrediosContratados/:id/nodos_poligono/count",
           method: "GET"
         },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.findById() instead.
+        "::findById::VistaPrediosTitulacion::nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.destroyById() instead.
+        "::destroyById::VistaPrediosTitulacion::nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.updateById() instead.
+        "::updateById::VistaPrediosTitulacion::nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono() instead.
+        "::get::VistaPrediosTitulacion::nodos_poligono": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.create() instead.
+        "::create::VistaPrediosTitulacion::nodos_poligono": {
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono",
+          method: "POST"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.createMany() instead.
+        "::createMany::VistaPrediosTitulacion::nodos_poligono": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono",
+          method: "POST"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.destroyAll() instead.
+        "::delete::VistaPrediosTitulacion::nodos_poligono": {
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.count() instead.
+        "::count::VistaPrediosTitulacion::nodos_poligono": {
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/count",
+          method: "GET"
+        },
       }
     );
 
@@ -15430,6 +15489,58 @@ module.factory(
       { 'id': '@id' },
       {
 
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.findById() instead.
+        "prototype$__findById__nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.destroyById() instead.
+        "prototype$__destroyById__nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.updateById() instead.
+        "prototype$__updateById__nodos_poligono": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono() instead.
+        "prototype$__get__nodos_poligono": {
+          isArray: true,
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono",
+          method: "GET"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.create() instead.
+        "prototype$__create__nodos_poligono": {
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono",
+          method: "POST"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.destroyAll() instead.
+        "prototype$__delete__nodos_poligono": {
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use VistaPrediosTitulacion.nodos_poligono.count() instead.
+        "prototype$__count__nodos_poligono": {
+          url: urlBase + "/VistaPrediosTitulacions/:id/nodos_poligono/count",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.VistaPrediosTitulacion#create
@@ -15993,6 +16104,307 @@ module.factory(
     */
     R.modelName = "VistaPrediosTitulacion";
 
+    /**
+     * @ngdoc object
+     * @name lbServices.VistaPrediosTitulacion.nodos_poligono
+     * @header lbServices.VistaPrediosTitulacion.nodos_poligono
+     * @object
+     * @description
+     *
+     * The object `VistaPrediosTitulacion.nodos_poligono` groups methods
+     * manipulating `VistaGeomPredios` instances related to `VistaPrediosTitulacion`.
+     *
+     * Call {@link lbServices.VistaPrediosTitulacion#nodos_poligono VistaPrediosTitulacion.nodos_poligono()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion#nodos_poligono
+         * @methodOf lbServices.VistaPrediosTitulacion
+         *
+         * @description
+         *
+         * Queries nodos_poligono of VistaPrediosTitulacion.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::get::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion.nodos_poligono#count
+         * @methodOf lbServices.VistaPrediosTitulacion.nodos_poligono
+         *
+         * @description
+         *
+         * Counts nodos_poligono of VistaPrediosTitulacion.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.nodos_poligono.count = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::count::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion.nodos_poligono#create
+         * @methodOf lbServices.VistaPrediosTitulacion.nodos_poligono
+         *
+         * @description
+         *
+         * Creates a new instance in nodos_poligono of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.create = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::create::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion.nodos_poligono#createMany
+         * @methodOf lbServices.VistaPrediosTitulacion.nodos_poligono
+         *
+         * @description
+         *
+         * Creates a new instance in nodos_poligono of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.createMany = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::createMany::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion.nodos_poligono#destroyAll
+         * @methodOf lbServices.VistaPrediosTitulacion.nodos_poligono
+         *
+         * @description
+         *
+         * Deletes all nodos_poligono of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.nodos_poligono.destroyAll = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::delete::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion.nodos_poligono#destroyById
+         * @methodOf lbServices.VistaPrediosTitulacion.nodos_poligono
+         *
+         * @description
+         *
+         * Delete a related item by id for nodos_poligono.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for nodos_poligono
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.nodos_poligono.destroyById = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::destroyById::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion.nodos_poligono#findById
+         * @methodOf lbServices.VistaPrediosTitulacion.nodos_poligono
+         *
+         * @description
+         *
+         * Find a related item by id for nodos_poligono.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for nodos_poligono
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.findById = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::findById::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.VistaPrediosTitulacion.nodos_poligono#updateById
+         * @methodOf lbServices.VistaPrediosTitulacion.nodos_poligono
+         *
+         * @description
+         *
+         * Update a related item by id for nodos_poligono.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for nodos_poligono
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `VistaGeomPredios` object.)
+         * </em>
+         */
+        R.nodos_poligono.updateById = function() {
+          var TargetResource = $injector.get("VistaGeomPredios");
+          var action = TargetResource["::updateById::VistaPrediosTitulacion::nodos_poligono"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);

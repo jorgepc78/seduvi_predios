@@ -1,0 +1,46 @@
+<div class="inmodal">
+      <div class="modal-header">
+          <h4 class="modal-title"> Situaci&oacute;n del t&iacute;tulo del predio</h4>
+      </div>
+      <div class="modal-body">
+            <form name="form_datos" class="form-horizontal">
+
+                  <div class="form-group">
+                      <label class="col-sm-3 control-label">Estatus del t&iacute;tulo</label>
+                      <div class="col-sm-9">
+                          <select class="form-control m-b" 
+                              ng-model="vm.predioEditar.EstatusTitulo"
+                              ng-options="situacion as situacion.estatusTitulo for situacion in vm.listaestatusTitulo" required>
+                          </select>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-3 control-label">N&uacute;m. documento</label>
+                      <div class="col-sm-5">
+                          <input type="text" class="form-control" ng-model="vm.predioEditar.numeroDocumentoTitulo">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-3 control-label">Fecha elaboraci&oacute;n t&iacute;tulo</label>
+                      <div class="col-sm-5">
+                          <div class="input-group date">
+                              <input type="text" readonly class="form-control" is-open="vm.opened1" datepicker-popup="d/M/yyyy" ui-date="dateOptions" ng-model="vm.predioEditar.fechaElaboracionTitulo">
+                              <span class="input-group-addon" ng-click="vm.openCalendar1($event)"><i class="fa fa-calendar"></i></span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-3 control-label">Observaciones</label>
+                      <div class="col-sm-9"><textarea class="form-control" ng-model="vm.predioEditar.observacionesTitulo" rows="5" cols="60"></textarea></div>
+                  </div>
+            </form>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
+      </div>
+</div>;

@@ -88,7 +88,7 @@
                                         <span ng-switch-when="5" class="label label-info">   {{predio.situacionFinanciera}}</span>
                                         <span ng-switch-when="6" class="label label-info">   {{predio.situacionFinanciera}}</span>
                                         <span ng-switch-when="7" class="label label-success">{{predio.situacionFinanciera}}</span>
-                                        <span ng-switch-when="8" class="label label-info">{{predio.situacionFinanciera}}</span>
+                                        <span ng-switch-when="8" class="label label-info">   {{predio.situacionFinanciera}}</span>
                                     </td>
                                 </tr>
                               </tbody>
@@ -120,13 +120,13 @@
                         <div class="tab-pane active" ng-show="vm.client == 2">
 
                                     <section id="map">
-                                        <div ui-map="vm.mapa.MapaUbicacionPredio" ui-options="vm.mapa.mapOptions" style="width: 100%; height: 440px;"></div>
+                                        <div ui-map="vm.mapa.MapaUbicacionPredio" ui-options="vm.mapa.mapOptions" style="width: 100%; height: 340px;"></div>
                                     </section>
 
                                     <div class="panel blank-panel">
                                         <tabset>
                                             <tab heading="Datos generales">
-                                                <div style="position: relative;height: 180px;">
+                                                <div style="position: relative;height: 280px;">
 
                                                     <div class="full-height-scroll" full-scroll>
 
@@ -202,7 +202,7 @@
                                             </tab>
 
                                             <tab heading="Beneficiario">
-                                                <div style="position: relative;height: 180px;">
+                                                <div style="position: relative;height: 280px;">
                                                     <div class="full-height-scroll" full-scroll>
                                                         <ul class="list-group clear-list" style="height:310px; padding:20px;">
                                                             <li class="list-group-item fist-item">
@@ -240,13 +240,13 @@
                                                 <br>
                                                 <div class="row" ng-if="currentUser.edicionContratadosBeneficiario == true">
                                                     <div class="col-md-12 text-center">
-                                                        <button type="button" ng-click="vm.editar_datos_beneficiario(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar datos del beneficiario</button>
+                                                        <button type="button" ng-click="vm.edita_datos_beneficiario(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar datos del beneficiario</button>
                                                     </div>
                                                 </div>
                                             </tab>
 
                                             <tab heading="Inf. financiera">
-                                                <div style="position: relative;height: 180px;">
+                                                <div style="position: relative;height: 280px;">
                                                     <div class="full-height-scroll" full-scroll>
                                                         <ul class="list-group clear-list" style="height:510px; padding:20px;">
                                                             <li class="list-group-item fist-item">
@@ -265,7 +265,7 @@
                                                             </li>
                                                             <li class="list-group-item">
                                                                 <span class="pull-right"> {{vm.predioSeleccionado.numContrato}} </span>
-                                                                N&uacute;m.contrato
+                                                                N&uacute;m. contrato
                                                             </li>
                                                             <li class="list-group-item">
                                                                 <span class="pull-right"> {{vm.predioSeleccionado.fechaContrato | date:"d'/'MMMM'/'yyyy"}} </span>
@@ -301,7 +301,7 @@
                                                             </li>
                                                             <li class="list-group-item">
                                                                 <span class="pull-right"> {{vm.predioSeleccionado.numMensualidades | number}} </span>
-                                                                N&uacute;m. mensualidades atrasadas
+                                                                N&uacute;m. mensualidades
                                                             </li>
                                                             <li class="list-group-item">
                                                                 <span class="pull-right"> {{vm.predioSeleccionado.numMensualidadesAtrasadas | number}} </span>
@@ -330,13 +330,13 @@
                                                 <br>
                                                 <div class="row" ng-if="currentUser.edicionContratadosFinanciero == true">
                                                     <div class="col-md-12 text-center">
-                                                        <button type="button" ng-click="vm.editar_datos_financieros(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar datos financieros</button>
+                                                        <button type="button" ng-click="vm.edita_datos_financieros(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar datos financieros</button>
                                                     </div>
                                                 </div>
                                             </tab>
 
                                             <tab heading="Inf. jur&iacute;dica">
-                                                <ul class="list-group clear-list" style="height:160px; padding:20px;">
+                                                <ul class="list-group clear-list" style="height:260px; padding:20px;">
                                                     <li class="list-group-item fist-item">
                                                         <span class="pull-right"> {{vm.predioSeleccionado.situacionJuridica}} </span>
                                                         Situaci&oacute;n jur&iacute;dica
@@ -353,7 +353,7 @@
                                                 <br>
                                                 <div class="row" ng-if="currentUser.edicionContratadosJuridico == true">
                                                     <div class="col-md-12 text-center">
-                                                        <button type="button" ng-click="vm.editar_datos_juridicos(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar datos jur&iacute;dicos</button>
+                                                        <button type="button" ng-click="vm.edita_datos_juridicos(vm.predioSeleccionado)" class="btn btn-success btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar datos jur&iacute;dicos</button>
                                                     </div>
                                                 </div>
                                             </tab>

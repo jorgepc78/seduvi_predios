@@ -10,6 +10,24 @@
     "table": "vista_localidades_predios"
   },
   "properties": {
+    "idLocalidad": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_localidad",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
     "claveMunicipio": {
       "type": "Number",
       "required": false,
@@ -74,16 +92,14 @@
       },
       "_selectable": true
     },
-    "idLocalidad": {
-      "type": "number",
-      "id": true,
+    "prediosTitulados": {
+      "type": "Number",
       "required": false,
-      "index": true,
       "length": null,
       "precision": 32,
       "scale": 0,
       "postgresql": {
-        "columnName": "id_localidad",
+        "columnName": "predios_titulados",
         "dataType": "integer",
         "dataLength": null,
         "dataPrecision": 32,

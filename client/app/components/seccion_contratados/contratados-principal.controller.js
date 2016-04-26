@@ -10,29 +10,30 @@
     function ContratadosPrincipalController($rootScope, $timeout, $modal, tablaDatosService, CatMunicipios, VistaLocalidadesPredios, VistaColoniasPredios, VistaPrediosContratados ) {
 
             var vm = this;
-            vm.listaMunicipios = [{claveMunicipio: 0, nombreMunicipio: 'Estado'}];
-            vm.listaLocalidades = [{idLocalidad: 0, nombreLocalidad: 'Seleccione municipio'}];
-            vm.listaColonias = [{idColonia: 0, colonia: 'Seleccione municipio'}];
-            vm.municipioSeleccionado = {};
-            vm.localidadSeleccionada = undefined;
-            vm.coloniaSeleccionada = undefined;
-            vm.mapa = { MapaUbicacionPredio: undefined};
+            vm.listaMunicipios                = [{claveMunicipio: 0, nombreMunicipio: 'Estado'}];
+            vm.listaLocalidades               = [{idLocalidad: 0, nombreLocalidad: 'Seleccione municipio'}];
+            vm.listaColonias                  = [{idColonia: 0, colonia: 'Seleccione municipio'}];
+            vm.municipioSeleccionado          = {};
+            vm.localidadSeleccionada          = undefined;
+            vm.coloniaSeleccionada            = undefined;
+            vm.mapa                           = { MapaUbicacionPredio: undefined};
 
             vm.edicionContratadosBeneficiario = $rootScope.currentUser.edicionContratadosBeneficiario;
-            vm.edicionContratadosFinanciero = $rootScope.currentUser.edicionContratadosFinanciero;
-            vm.edicionContratadosJuridico = $rootScope.currentUser.edicionContratadosJuridico;
+            vm.edicionContratadosFinanciero   = $rootScope.currentUser.edicionContratadosFinanciero;
+            vm.edicionContratadosJuridico     = $rootScope.currentUser.edicionContratadosJuridico;
 
-            vm.muestra_predios_municipio = muestra_predios_municipio;
-            vm.muestra_predios_localidad = muestra_predios_localidad;
-            vm.muestra_predios_colonia = muestra_predios_colonia;
-            vm.muestraDatosPredioActual  = muestraDatosPredioActual;
+            vm.muestra_predios_municipio      = muestra_predios_municipio;
+            vm.muestra_predios_localidad      = muestra_predios_localidad;
+            vm.muestra_predios_colonia        = muestra_predios_colonia;
+            vm.muestraResultadosBusqueda      = muestraResultadosBusqueda;
+            vm.limpiaBusqueda                 = limpiaBusqueda;
+            vm.muestraDatosPredioActual       = muestraDatosPredioActual;
+            vm.cambiarPagina                  = cambiarPagina;
 
-            vm.muestraResultadosBusqueda  = muestraResultadosBusqueda;
-            vm.limpiaBusqueda             = limpiaBusqueda;
-            vm.cambiarPagina              = cambiarPagina;
-            vm.cambia_estatus_disponibles = cambia_estatus_disponibles;
-            vm.editar_costo_predio        = editar_costo_predio;
-            vm.mueve_predios_contratados  = mueve_predios_contratados;
+            vm.edita_datos_beneficiario       = edita_datos_beneficiario;
+            vm.edita_datos_financieros        = edita_datos_financieros;
+            vm.edita_datos_juridicos          = edita_datos_juridicos;
+            vm.mueve_predios_titulados        = mueve_predios_titulados;
 
             vm.tablaListaPredios = {
               totalElementos     : 0,
@@ -60,8 +61,6 @@
 
 
             inicia();
-
-
 
             function inicia() {
 
@@ -543,17 +542,23 @@
             };
 
 
-            function cambia_estatus_disponibles(predioSeleccionado) {
+            function edita_datos_beneficiario(predioSeleccionado) {
 
                     vm.predioEditar = {
-                        idpredio                 : predioSeleccionado.id,
-                        idEstatusDisponibles     : parseFloat(predioSeleccionado.idEstatusDisponibles)
+                        idpredio              : predioSeleccionado.id,
+                        beneficiario          : predioSeleccionado.beneficiario,
+                        conyugue              : predioSeleccionado.conyugue,
+                        numeroExpediente      : predioSeleccionado.numeroExpediente,
+                        idModalidadPrograma   : predioSeleccionado.idModalidadPrograma,
+                        idDocumentoAsignacion : predioSeleccionado.idDocumentoAsignacion,
+                        observacionesSocial   : predioSeleccionado.observacionesSocial
                    };
 
                     var modalInstance = $modal.open({
-                        templateUrl: 'app/components/seccion_disponibles/modal-cambia-estatus-disponibles.html',
+                        templateUrl: 'app/components/seccion_contratados/modal-edita-datos-beneficiario.html',
                         windowClass: "animated fadeIn",
-                        controller: 'ModalCambiaEstatusDisponiblesController as vm',
+                        size: 'lg',
+                        controller: 'ModalEditaDatosBeneficiarioController as vm',
                         resolve: {
                           predioEditar: function () { return vm.predioEditar }
                         }
@@ -561,28 +566,45 @@
                     });
 
                     modalInstance.result.then(function (respuesta) {
-                      vm.predioSeleccionado.idEstatusDisponibles = respuesta.idEstatusDisponibles;
-                      vm.predioSeleccionado.estatusDisponibles   = respuesta.estatusDisponibles;
+                        vm.predioSeleccionado.beneficiario          = respuesta.beneficiario;
+                        vm.predioSeleccionado.conyugue              = respuesta.conyugue;
+                        vm.predioSeleccionado.numeroExpediente      = respuesta.numeroExpediente;
+                        vm.predioSeleccionado.idModalidadPrograma   = respuesta.idModalidadPrograma;
+                        vm.predioSeleccionado.modalidadPrograma     = respuesta.modalidadPrograma;
+                        vm.predioSeleccionado.idDocumentoAsignacion = respuesta.idDocumentoAsignacion;
+                        vm.predioSeleccionado.documentoAsignacion   = respuesta.documentoAsignacion;
+                        vm.predioSeleccionado.observacionesSocial   = respuesta.observacionesSocial;
+                        vm.predioSeleccionado.fechaActBeneficiario  = new Date(respuesta.fechaActBeneficiario);
                     }, function () {
                     });
-
             };
 
 
-            function editar_costo_predio(predioSeleccionado) {
+            function edita_datos_financieros(predioSeleccionado) {
 
                     vm.predioEditar = {
-                        idpredio                 : predioSeleccionado.id,
-                        costoAutorizadoM2        : parseFloat(predioSeleccionado.costoAutorizadoM2),
-                        totalCosto               : parseFloat(predioSeleccionado.totalCosto),
-                        costoContable            : parseFloat(predioSeleccionado.costoContable),
-                        observacionesDisponibles : predioSeleccionado.observacionesDisponibles
-                   };
+                        idpredio                  : predioSeleccionado.id,
+                        numContrato               : predioSeleccionado.numContrato,
+                        fechaContrato             : predioSeleccionado.fechaContrato,
+                        fechaInicioPago           : predioSeleccionado.fechaInicioPago,
+                        costoPredio               : predioSeleccionado.costoPredio,
+                        enganche                  : predioSeleccionado.enganche,
+                        subsidio                  : predioSeleccionado.subsidio,
+                        pagosAnticipados          : predioSeleccionado.pagosAnticipados,
+                        saldoInsolutoInicial      : predioSeleccionado.saldoInsolutoInicial,
+                        montoMensual              : predioSeleccionado.montoMensual,
+                        numMensualidades          : predioSeleccionado.numMensualidades,
+                        numMensualidadesAtrasadas : predioSeleccionado.numMensualidadesAtrasadas,
+                        moratorios                : predioSeleccionado.moratorios,
+                        idSituacionFinanciera     : predioSeleccionado.idSituacionFinanciera,
+                        observacionesFinanciero   : predioSeleccionado.observacionesFinanciero
+                    };
 
                     var modalInstance = $modal.open({
-                        templateUrl: 'app/components/seccion_disponibles/modal-edita-costos-disponibles.html',
+                        templateUrl: 'app/components/seccion_contratados/modal-edita-datos-financieros.html',
                         windowClass: "animated fadeIn",
-                        controller: 'ModalEditaCostosDisponiblesController as vm',
+                        size: 'lg',
+                        controller: 'ModalEditaDatosFinancierosController as vm',
                         resolve: {
                           predioEditar: function () { return vm.predioEditar }
                         }
@@ -590,28 +612,68 @@
                     });
 
                     modalInstance.result.then(function (respuesta) {
-                      //$scope.selected = selectedItem;
-
-                      vm.predioSeleccionado.costoAutorizadoM2        = respuesta.costoAutorizadoM2;
-                      vm.predioSeleccionado.totalCosto               = respuesta.totalCosto;
-                      vm.predioSeleccionado.costoContable            = respuesta.costoContable;
-                      vm.predioSeleccionado.observacionesDisponibles = respuesta.observacionesDisponibles;
+                        vm.predioSeleccionado.numContrato               = respuesta.numContrato;
+                        vm.predioSeleccionado.fechaContrato             = new Date(respuesta.fechaContrato);
+                        vm.predioSeleccionado.fechaInicioPago           = new Date(respuesta.fechaInicioPago);
+                        vm.predioSeleccionado.costoPredio               = respuesta.costoPredio;
+                        vm.predioSeleccionado.enganche                  = respuesta.enganche;
+                        vm.predioSeleccionado.subsidio                  = respuesta.subsidio;
+                        vm.predioSeleccionado.pagosAnticipados          = respuesta.pagosAnticipados;
+                        vm.predioSeleccionado.saldoInsolutoInicial      = respuesta.saldoInsolutoInicial;
+                        vm.predioSeleccionado.montoMensual              = respuesta.montoMensual;
+                        vm.predioSeleccionado.numMensualidades          = respuesta.numMensualidades;
+                        vm.predioSeleccionado.numMensualidadesAtrasadas = respuesta.numMensualidadesAtrasadas;
+                        vm.predioSeleccionado.moratorios                = respuesta.moratorios;
+                        vm.predioSeleccionado.idSituacionFinanciera     = respuesta.idSituacionFinanciera;
+                        vm.predioSeleccionado.situacionFinanciera       = respuesta.situacionFinanciera;
+                        vm.predioSeleccionado.observacionesFinanciero   = respuesta.observacionesFinanciero;
+                        vm.predioSeleccionado.fechaActFinanciera        = new Date(respuesta.fechaActFinanciera);
                     }, function () {
                     });
             };
 
 
-            function mueve_predios_contratados(predioSeleccionado) {
+
+            function edita_datos_juridicos(predioSeleccionado) {
+
+                    vm.predioEditar = {
+                        idpredio              : predioSeleccionado.id,
+                        idSituacionJuridica   : predioSeleccionado.idSituacionJuridica,
+                        observacionesJuridico : predioSeleccionado.observacionesJuridico
+                    };
+
+                    var modalInstance = $modal.open({
+                        templateUrl: 'app/components/seccion_contratados/modal-edita-datos-juridicos.html',
+                        windowClass: "animated fadeIn",
+                        size: 'lg',
+                        controller: 'ModalEditaDatosJuridicosController as vm',
+                        resolve: {
+                          predioEditar: function () { return vm.predioEditar }
+                        }
+
+                    });
+
+                    modalInstance.result.then(function (respuesta) {
+                        vm.predioSeleccionado.idSituacionJuridica   = respuesta.idSituacionJuridica;
+                        vm.predioSeleccionado.situacionJuridica     = respuesta.situacionJuridica;
+                        vm.predioSeleccionado.observacionesJuridico = respuesta.observacionesJuridico;
+                        vm.predioSeleccionado.fechaActJuridica      = new Date(respuesta.fechaActJuridica);
+                    }, function () {
+                    });
+            };
+
+
+
+            function mueve_predios_titulados(predioSeleccionado) {
 
                     vm.predioEditar = {
                         idpredio : predioSeleccionado.id
                     };
 
                     var modalInstance = $modal.open({
-                        templateUrl: 'app/components/seccion_disponibles/modal-mueve-predios-contratados.html',
+                        templateUrl: 'app/components/seccion_contratados/modal-mueve-predios-titulados.html',
                         windowClass: "animated fadeIn",
-                        size: 'lg',
-                        controller: 'ModalmuevePrediosContratadosController as vm',
+                        controller: 'ModalMuevePrediosTituladosController as vm',
                         resolve: {
                           predioEditar: function () { return vm.predioEditar }
                         }
