@@ -127,15 +127,15 @@
       "_selectable": true
     },
     "manzana": {
-      "type": "String",
+      "type": "Number",
       "required": false,
-      "length": 6,
+      "length": 32,
       "precision": null,
       "scale": null,
       "postgresql": {
         "columnName": "manzana",
-        "dataType": "character varying",
-        "dataLength": 6,
+        "dataType": "integer",
+        "dataLength": 32,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "YES"
@@ -143,15 +143,15 @@
       "_selectable": true
     },
     "lote": {
-      "type": "String",
+      "type": "Number",
       "required": false,
-      "length": 6,
+      "length": 32,
       "precision": null,
       "scale": null,
       "postgresql": {
         "columnName": "lote",
-        "dataType": "character varying",
-        "dataLength": 6,
+        "dataType": "integer",
+        "dataLength": 32,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "YES"
@@ -1133,6 +1133,11 @@
       "type": "belongsTo",
       "model": "VistaGeomPredios",
       "foreignKey": "idp"
+    },
+    "historico_predio": {
+      "type": "hasMany",
+      "model": "TdPrediosInventarioHistorico",
+      "foreignKey": "idPredio"
     }
   },
   "acls": [],

@@ -5,17 +5,19 @@
         .module('seduvi_inv_predios')
         .controller('ContratadosPrincipalController', ContratadosPrincipalController);
 
-    ContratadosPrincipalController.$inject = ['$rootScope', '$timeout', '$modal', 'tablaDatosService', 'CatMunicipios', 'VistaLocalidadesPredios', 'VistaColoniasPredios', 'VistaPrediosContratados'];
+    ContratadosPrincipalController.$inject = ['$rootScope', '$timeout', '$modal', 'tablaDatosService', 'CatMunicipios', 'VistaLocalidadesPredios', 'VistaColoniasPredios', 'VistaPrediosContratados', 'TdPrediosInventario', 'TdPrediosInventarioHistorico', 'VistaSitFinancieraPredios'];
 
-    function ContratadosPrincipalController($rootScope, $timeout, $modal, tablaDatosService, CatMunicipios, VistaLocalidadesPredios, VistaColoniasPredios, VistaPrediosContratados ) {
+    function ContratadosPrincipalController($rootScope, $timeout, $modal, tablaDatosService, CatMunicipios, VistaLocalidadesPredios, VistaColoniasPredios, VistaPrediosContratados, TdPrediosInventario, TdPrediosInventarioHistorico, VistaSitFinancieraPredios ) {
 
             var vm = this;
             vm.listaMunicipios                = [{claveMunicipio: 0, nombreMunicipio: 'Estado'}];
-            vm.listaLocalidades               = [{idLocalidad: 0, nombreLocalidad: 'Seleccione municipio'}];
-            vm.listaColonias                  = [{idColonia: 0, colonia: 'Seleccione municipio'}];
+            vm.listaLocalidades               = {};
+            vm.listaColonias                  = {};
+            vm.listaEstatus                   = {};
             vm.municipioSeleccionado          = {};
             vm.localidadSeleccionada          = undefined;
             vm.coloniaSeleccionada            = undefined;
+            vm.estatusSeleccionado            = undefined;
             vm.mapa                           = { MapaUbicacionPredio: undefined};
 
             vm.edicionContratadosBeneficiario = $rootScope.currentUser.edicionContratadosBeneficiario;
@@ -25,6 +27,8 @@
             vm.muestra_predios_municipio      = muestra_predios_municipio;
             vm.muestra_predios_localidad      = muestra_predios_localidad;
             vm.muestra_predios_colonia        = muestra_predios_colonia;
+            vm.muestra_predios_estatus        = muestra_predios_estatus;
+            
             vm.muestraResultadosBusqueda      = muestraResultadosBusqueda;
             vm.limpiaBusqueda                 = limpiaBusqueda;
             vm.muestraDatosPredioActual       = muestraDatosPredioActual;
@@ -33,6 +37,8 @@
             vm.edita_datos_beneficiario       = edita_datos_beneficiario;
             vm.edita_datos_financieros        = edita_datos_financieros;
             vm.edita_datos_juridicos          = edita_datos_juridicos;
+
+            vm.mueve_predio_disponibles       = mueve_predio_disponibles;
             vm.mueve_predios_titulados        = mueve_predios_titulados;
 
             vm.tablaListaPredios = {
@@ -175,15 +181,18 @@
                   vm.tablaListaPredios.fila_seleccionada = undefined;
                   vm.localidadSeleccionada = undefined;
                   vm.coloniaSeleccionada = undefined;
+                  vm.estatusSeleccionado = undefined;
                   vm.client = 1;
                   vm.tablaListaPredios.paginaActual = 1;
                   vm.tablaListaPredios.inicio = 0;
                   vm.tablaListaPredios.fin = 1;
+                  vm.mostrarbtnLimpiar = false;
+                  vm.nombre_buscar = '';
                   
                   if(vm.municipioSeleccionado.claveMunicipio == 0)
                   {
-                        vm.listaLocalidades = [{idLocalidad: 0, nombreLocalidad: 'Seleccione municipio'}];
-                        vm.listaColonias = [{idColonia: 0, colonia: 'Seleccione municipio'}];
+                        vm.listaLocalidades = {};
+                        vm.listaColonias = {};
                         vm.tablaListaPredios.condicion = {};
                   }
                   else
@@ -222,6 +231,18 @@
                               vm.listaColonias = resp;
                         });
 
+                        VistaSitFinancieraPredios.find({
+                            filter: {
+                                  where: {claveMunicipio: vm.municipioSeleccionado.claveMunicipio},
+                                  fields: ['idSituacionFinanciera','situacionFinanciera'],
+                                  order: ['situacionFinanciera ASC']
+                            }
+                        })
+                        .$promise
+                        .then(function(resp) {
+                              vm.listaEstatus = resp;
+                        });
+
                         vm.tablaListaPredios.condicion = { claveMunicipio: vm.municipioSeleccionado.claveMunicipio};
                   }
 
@@ -258,6 +279,7 @@
                   vm.predios = {};
                   vm.predioSeleccionado = {};
                   vm.coloniaSeleccionada = undefined;
+                  vm.estatusSeleccionado = undefined;
                   vm.tablaListaPredios.fila_seleccionada = undefined;
                   vm.client = 1;
                   vm.tablaListaPredios.paginaActual = 1;
@@ -296,11 +318,13 @@
 
             };
 
+
             function muestra_predios_colonia() {
 
                   vm.predios = {};
                   vm.predioSeleccionado = {};
                   vm.localidadSeleccionada = undefined;
+                  vm.estatusSeleccionado = undefined;
                   vm.tablaListaPredios.fila_seleccionada = undefined;
                   vm.client = 1;
                   vm.tablaListaPredios.paginaActual = 1;
@@ -340,40 +364,75 @@
             };
 
 
-            function muestraResultadosBusqueda() {
+            function muestra_predios_estatus() {
 
                   vm.predios = {};
                   vm.predioSeleccionado = {};
+                  vm.localidadSeleccionada = undefined;
+                  vm.coloniaSeleccionada = undefined;
                   vm.tablaListaPredios.fila_seleccionada = undefined;
                   vm.client = 1;
                   vm.tablaListaPredios.paginaActual = 1;
                   vm.tablaListaPredios.inicio = 0;
                   vm.tablaListaPredios.fin = 1;
 
-                  if(vm.localidadSeleccionada == undefined && vm.coloniaSeleccionada == undefined)
-                  {
-                      if(vm.municipioSeleccionado.claveMunicipio == 0)
-                          vm.tablaListaPredios.condicion = { manzana: vm.nombre_buscar };
-                      else {
-                          var temp = vm.tablaListaPredios.condicion;
-                          vm.tablaListaPredios.condicion = {
-                                            and: [
-                                              temp,
-                                              {manzana: vm.nombre_buscar}
-                                            ]                              
-                                        }
-                      }
-                  } 
-                  else
-                  {
-                    var temp = vm.tablaListaPredios.condicion;
-                    vm.tablaListaPredios.condicion = {
-                                      and: [
-                                        temp,
-                                        {manzana: vm.nombre_buscar}
-                                      ]                              
-                                  }
 
+                  vm.tablaListaPredios.condicion = {
+                                                      and: [
+                                                        {claveMunicipio: vm.municipioSeleccionado.claveMunicipio},
+                                                        {idSituacionFinanciera: vm.estatusSeleccionado.idSituacionFinanciera}
+                                                      ]                              
+                                                   };
+
+                  tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
+                  .then(function(respuesta) {
+
+                        vm.tablaListaPredios.totalElementos = respuesta.total_registros;
+                        vm.tablaListaPredios.inicio = respuesta.inicio;
+                        vm.tablaListaPredios.fin = respuesta.fin;
+
+                        if(vm.tablaListaPredios.totalElementos > 0)
+                        {
+                            vm.predios = respuesta.datos;
+                            vm.predioSeleccionado = vm.predios[0];
+                            vm.client = 2;
+                            vm.tablaListaPredios.fila_seleccionada = 0;
+
+                            $timeout(function() {
+                                google.maps.event.trigger(vm.mapa.MapaUbicacionPredio,'resize');
+                                muestraDatosPredioActual(vm.predioSeleccionado);
+                            }, 1000);
+                        }
+
+                        vm.mostrarbtnLimpiar = false;
+                        vm.nombre_buscar = '';
+                  });
+
+            };
+
+
+            function muestraResultadosBusqueda() {
+
+                  vm.predios = {};
+                  vm.predioSeleccionado = {};
+                  vm.localidadSeleccionada = undefined;
+                  vm.coloniaSeleccionada = undefined;
+                  vm.estatusSeleccionado = undefined;
+                  vm.tablaListaPredios.fila_seleccionada = undefined;
+                  vm.client = 1;
+                  vm.tablaListaPredios.paginaActual = 1;
+                  vm.tablaListaPredios.inicio = 0;
+                  vm.tablaListaPredios.fin = 1;
+
+                  if(vm.municipioSeleccionado.claveMunicipio == 0)
+                      vm.tablaListaPredios.condicion = { manzana: vm.nombre_buscar };
+                  else {
+                      vm.tablaListaPredios.condicion = {
+                                        and: [
+                                          {claveMunicipio: vm.municipioSeleccionado.claveMunicipio},
+                                          {manzana: vm.nombre_buscar}
+                                        ]
+                                    }
                   }
 
                   tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
@@ -405,23 +464,19 @@
 
                   vm.predios = {};
                   vm.predioSeleccionado = {};
+                  vm.localidadSeleccionada = undefined;
+                  vm.coloniaSeleccionada = undefined;
+                  vm.estatusSeleccionado = undefined;
                   vm.tablaListaPredios.fila_seleccionada = undefined;
                   vm.client = 1;
                   vm.tablaListaPredios.paginaActual = 1;
                   vm.tablaListaPredios.inicio = 0;
                   vm.tablaListaPredios.fin = 1;
 
-                  if(vm.localidadSeleccionada == undefined && vm.coloniaSeleccionada == undefined)
-                  {
-                      if(vm.municipioSeleccionado.claveMunicipio == 0)
-                          vm.tablaListaPredios.condicion = {};
-                      else
-                          vm.tablaListaPredios.condicion = { claveMunicipio: vm.municipioSeleccionado.claveMunicipio};
-                  } 
-                  else if(vm.localidadSeleccionada !== undefined)
-                      vm.tablaListaPredios.condicion = { idLocalidad: vm.localidadSeleccionada.idLocalidad};
+                  if(vm.municipioSeleccionado.claveMunicipio == 0)
+                      vm.tablaListaPredios.condicion = {};
                   else
-                      vm.tablaListaPredios.condicion = { idColonia: vm.coloniaSeleccionada.idColonia};
+                      vm.tablaListaPredios.condicion = { claveMunicipio: vm.municipioSeleccionado.claveMunicipio};
                   
 
                   tablaDatosService.obtiene_datos_tabla(VistaPrediosContratados, vm.tablaListaPredios)
@@ -489,22 +544,22 @@
                             vm.infoPredio.close();
                             vm.DibujoPredio.setMap(null);
 
-                            if(vm.predioSeleccionado.idtipoLote == 0) {
+                            if(vm.predioSeleccionado.idTipoLote == 0) {
                                 vm.DibujoPredio = new google.maps.Polygon({
                                     strokeColor: "#d1dade", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#d1dade", fillOpacity: 0.35
                                 });
                             }
-                            else if(vm.predioSeleccionado.idtipoLote == 1) {
+                            else if(vm.predioSeleccionado.idTipoLote == 1) {
                                 vm.DibujoPredio = new google.maps.Polygon({
                                     strokeColor: "#FF0000", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#FF0000", fillOpacity: 0.35
                                 });
                             }
-                            else if(vm.predioSeleccionado.idtipoLote == 2) {
+                            else if(vm.predioSeleccionado.idTipoLote == 2) {
                                 vm.DibujoPredio = new google.maps.Polygon({
                                     strokeColor: "#1ab394", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#1ab394", fillOpacity: 0.35
                                 });
                             }
-                            else if(vm.predioSeleccionado.idtipoLote == 3) {
+                            else if(vm.predioSeleccionado.idTipoLote == 3) {
                                 vm.DibujoPredio = new google.maps.Polygon({
                                     strokeColor: "#f7a54a", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#f7a54a", fillOpacity: 0.35
                                 });
@@ -663,6 +718,95 @@
             };
 
 
+            function mueve_predio_disponibles(predioSeleccionado) {
+
+                  swal({
+                    title: "Confirmar",
+                    html: 'Se mover&aacute; el predio <strong>'+ (predioSeleccionado.subdivisionLote == '' ? predioSeleccionado.lote : predioSeleccionado.lote + '-' + predioSeleccionado.subdivisionLote) +'</strong> de la manzana <strong>'+ predioSeleccionado.manzana +'</strong> de la colonia <strong>'+ predioSeleccionado.colonia +'</strong> a los predios disponibles y se eliminar&aacute;n los datos del beneficiario, financieros y jur&iacute;dicos, ¿Continuar?',
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Aceptar",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false,
+                    closeOnCancel: true
+                  }, function(){
+                          swal.disableButtons();
+
+                          TdPrediosInventario.historico_predio.create(
+                            { 
+                                id: predioSeleccionado.id 
+                            },{
+                                beneficiario              : predioSeleccionado.beneficiario,
+                                conyugue                  : predioSeleccionado.conyugue,
+                                numeroExpediente          : predioSeleccionado.numeroExpediente,
+                                modalidadPrograma         : predioSeleccionado.modalidadPrograma,
+                                documentoAsignacion       : predioSeleccionado.documentoAsignacion,
+                                observacionesSocial       : predioSeleccionado.observacionesSocial,
+                                numContrato               : predioSeleccionado.numContrato,
+                                fechaContrato             : predioSeleccionado.fechaContrato,
+                                fechaInicioPago           : predioSeleccionado.fechaInicioPago,
+                                costoPredio               : predioSeleccionado.costoPredio,
+                                enganche                  : predioSeleccionado.enganche,
+                                subsidio                  : predioSeleccionado.subsidio,
+                                pagosAnticipados          : predioSeleccionado.pagosAnticipados,
+                                saldoInsolutoInicial      : predioSeleccionado.saldoInsolutoInicial,
+                                montoMensual              : predioSeleccionado.montoMensual,
+                                numMensualidades          : predioSeleccionado.numMensualidades,
+                                numMensualidadesAtrasadas : predioSeleccionado.numMensualidadesAtrasadas,
+                                moratorios                : predioSeleccionado.moratorios,
+                                situacionFinanciera       : predioSeleccionado.situacionFinanciera,
+                                observacionesFinanciero   : predioSeleccionado.observacionesFinanciero,
+                                situacionJuridica         : predioSeleccionado.situacionJuridica,
+                                observacionesJuridico     : predioSeleccionado.observacionesJuridico,
+                                fechaActMovimiento        : Date()
+                            })
+                            .$promise
+                            .then(function(resp) {
+
+                                  TdPrediosInventario.prototype$updateAttributes(
+                                  {
+                                      id: predioSeleccionado.id
+                                  },
+                                  {
+                                      beneficiario              : '',
+                                      conyugue                  : '',
+                                      numeroExpediente          : '',
+                                      idModalidadPrograma       : 0,
+                                      idDocumentoAsignacion     : 0,
+                                      observacionesSocial       : '',
+                                      numContrato               : '',
+                                      fechaContrato             : null,
+                                      fechaInicioPago           : null,
+                                      costoPredio               : 0,
+                                      enganche                  : 0,
+                                      subsidio                  : 0,
+                                      pagosAnticipados          : 0,
+                                      saldoInsolutoInicial      : 0,
+                                      montoMensual              : 0,
+                                      numMensualidades          : 0,
+                                      numMensualidadesAtrasadas : 0,
+                                      moratorios                : 0,
+                                      idSituacionFinanciera     : 0,
+                                      observacionesFinanciero   : '',
+                                      idSituacionJuridica       : 0,
+                                      observacionesJuridico     : '',
+                                      fechaActBeneficiario      : null,
+                                      fechaActFinanciera        : null,
+
+                                      estatusProcesoPredio   : 1,
+                                      fechaActDisponibles     : Date()
+                                  })
+                                  .$promise.then(function(respuesta) {
+                                        vm.limpiaBusqueda();
+                                        swal('Movimiento realizado', '', 'success');
+                                  });
+                          });
+                  });
+
+            };
+
+
 
             function mueve_predios_titulados(predioSeleccionado) {
 
@@ -671,7 +815,7 @@
                     };
 
                     var modalInstance = $modal.open({
-                        templateUrl: 'app/components/seccion_contratados/modal-mueve-predios-titulados.html',
+                        templateUrl: 'app/components/proceso_movimientos_estatus/modal-mueve-predios-titulados.html',
                         windowClass: "animated fadeIn",
                         controller: 'ModalMuevePrediosTituladosController as vm',
                         resolve: {

@@ -23,7 +23,7 @@
                 <div class="ibox-content">
                     
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                                         <div class="input-group" style="margin-top:17px;width: 300px;">
                                                 <label class="col-md-3 control-label" style="margin-top:7px;">Localidad:</label>
                                                 <div class="col-md-9">
@@ -31,20 +31,28 @@
                                             </div>
                                         </div>
                         </div>
-                        <div class="col-md-4">
-                                        <div class="input-group" style="margin-top:17px;width: 400px;">
-                                                <label class="col-md-2 control-label" style="margin-top:7px;">Colonia:</label>
-                                                <div class="col-md-10">
+                        <div class="col-md-3">
+                                        <div class="input-group" style="margin-top:17px;width: 300px;">
+                                                <label class="col-md-3 control-label" style="margin-top:7px;">Colonia:</label>
+                                                <div class="col-md-9">
                                                     <select class="form-control m-b" ng-model="vm.coloniaSeleccionada" ng-change="vm.muestra_predios_colonia()" ng-options="colonia as colonia.colonia for colonia in vm.listaColonias" required></select>
                                             </div>
                                         </div>
                         </div>
                         <div class="col-md-4">
+                                        <div class="input-group" style="margin-top:17px;width: 350px;">
+                                                <label class="col-md-3 control-label" style="margin-top:7px;">Sit. Financiera:</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control m-b" ng-model="vm.estatusSeleccionado" ng-change="vm.muestra_predios_estatus()" ng-options="estatus as estatus.situacionFinanciera for estatus in vm.listaEstatus" required></select>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="col-md-2">
                                         <div class="input-group" style="margin-top:16px;">
-                                            <input type="text" ng-teclaenter="vm.muestraResultadosBusqueda()" placeholder="Escriba la manzana a buscar" class="input form-control" ng-model="vm.nombre_buscar" required>
+                                            <input type="text" ng-teclaenter="vm.muestraResultadosBusqueda()" placeholder="Manzana" class="input form-control" ng-model="vm.nombre_buscar" required>
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-primary btn-labeled" ng-click="vm.muestraResultadosBusqueda()"><span class="btn-label"><i class="fa fa-search"></i></span> Buscar</button>
-                                                            <button class="btn btn-success btn-labeled" ng-click="vm.limpiaBusqueda()" ng-show="vm.mostrarbtnLimpiar"><span class="btn-label"><i class="fa fa-times"></i></span> Limpiar</button>
+                                                            <button class="btn btn-success" ng-click="vm.limpiaBusqueda()" ng-show="vm.mostrarbtnLimpiar"><i class="fa fa-trash-o"></i></button>
+                                                            <button class="btn btn-primary" ng-click="vm.muestraResultadosBusqueda()"><i class="fa fa-search"></i></button>
                                                     </span>
                                         </div>
                         </div>
@@ -73,7 +81,7 @@
                                     <td> {{predio.colonia}}</td>
                                     <td> {{predio.manzana}}</td>
                                     <td> {{(predio.subdivisionLote == '' ? predio.lote : predio.lote + '-' + predio.subdivisionLote)}}</td>
-                                    <td class="client-status" ng-switch on="predio.idtipoLote">
+                                    <td class="client-status" ng-switch on="predio.idTipoLote">
                                         <span ng-switch-when="0" class="label label-default">{{predio.tipoLote}}</span>
                                         <span ng-switch-when="1" class="label label-danger"> {{predio.tipoLote}}</span>
                                         <span ng-switch-when="2" class="label label-primary">{{predio.tipoLote}}</span>
@@ -136,7 +144,7 @@
                                                                 Identificador del predio (IDP)
                                                             </li>
                                                             <li class="list-group-item">
-                                                                <span class="pull-right" ng-switch on="vm.predioSeleccionado.idtipoLote">
+                                                                <span class="pull-right" ng-switch on="vm.predioSeleccionado.idTipoLote">
                                                                     <span ng-switch-when="0" class="label label-default">{{vm.predioSeleccionado.tipoLote}}</span>
                                                                     <span ng-switch-when="1" class="label label-danger"> {{vm.predioSeleccionado.tipoLote}}</span>
                                                                     <span ng-switch-when="2" class="label label-primary">{{vm.predioSeleccionado.tipoLote}}</span>

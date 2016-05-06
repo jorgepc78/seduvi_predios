@@ -1,0 +1,436 @@
+{
+  "name": "TdPrediosInventarioHistorico",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "postgresql": {
+    "schema": "public",
+    "table": "td_predios_inventario_historico"
+  },
+  "properties": {
+    "id": {
+      "type": "Number",
+      "id": true,
+      "required": false,
+      "index": true,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "idPredio": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_predio",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "beneficiario": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "beneficiario",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "conyugue": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "conyugue",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "numeroExpediente": {
+      "type": "String",
+      "required": false,
+      "length": 7,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "numero_expediente",
+        "dataType": "character varying",
+        "dataLength": 7,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "tipoAsignacion": {
+      "type": "String",
+      "required": false,
+      "length": 65,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "tipo_asignacion",
+        "dataType": "character varying",
+        "dataLength": 65,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "modalidadPrograma": {
+      "type": "String",
+      "required": false,
+      "length": 30,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "modalidad_programa",
+        "dataType": "character varying",
+        "dataLength": 30,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "documentoAsignacion": {
+      "type": "String",
+      "required": false,
+      "length": 65,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "documento_asignacion",
+        "dataType": "character varying",
+        "dataLength": 65,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "observacionesSocial": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "observaciones_social",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "numContrato": {
+      "type": "String",
+      "required": false,
+      "length": 45,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "num_contrato",
+        "dataType": "character varying",
+        "dataLength": 45,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "fechaContrato": {
+      "type": "date",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "fecha_contrato",
+        "dataType": "timestamp with time zone",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "fechaInicioPago": {
+      "type": "date",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "fecha_inicio_pago",
+        "dataType": "timestamp with time zone",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "costoPredio": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "costo_predio",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "enganche": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "enganche",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "subsidio": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "subsidio",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "pagosAnticipados": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "pagos_anticipados",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "saldoInsolutoInicial": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "saldo_insoluto_inicial",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "montoMensual": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "monto_mensual",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "numMensualidades": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "num_mensualidades",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "numMensualidadesAtrasadas": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "num_mensualidades_atrasadas",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "moratorios": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 53,
+      "scale": null,
+      "postgresql": {
+        "columnName": "moratorios",
+        "dataType": "double precision",
+        "dataLength": null,
+        "dataPrecision": 53,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "situacionFinanciera": {
+      "type": "String",
+      "required": false,
+      "length": 45,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "situacion_financiera",
+        "dataType": "character varying",
+        "dataLength": 45,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "observacionesFinanciero": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "observaciones_financiero",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "situacionJuridica": {
+      "type": "String",
+      "required": false,
+      "length": 45,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "situacion_juridica",
+        "dataType": "character varying",
+        "dataLength": 45,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "observacionesJuridico": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "observaciones_juridico",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "fechaActMovimiento": {
+      "type": "date",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "fecha_act_movimiento",
+        "dataType": "timestamp with time zone",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

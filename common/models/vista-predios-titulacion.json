@@ -202,6 +202,23 @@
       },
       "_selectable": true
     },
+    "idtipoLote": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_tipo_lote",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
     "tipoLote": {
       "type": "String",
       "required": false,
@@ -650,6 +667,22 @@
       },
       "_selectable": true
     },
+    "fechaActFinanciera": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "fecha_act_financiera",
+        "dataType": "timestamp with time zone",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
     "idEstatusTitulo": {
       "type": "Number",
       "required": false,
@@ -752,7 +785,7 @@
     "nodos_poligono": {
       "type": "hasMany",
       "model": "VistaGeomPredios",
-      "foreignKey": "idp"
+      "foreignKey": "id"
     }
   },
   "acls": [],

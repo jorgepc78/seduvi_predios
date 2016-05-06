@@ -1,0 +1,20 @@
+<div class="inmodal">
+      <div class="modal-header">
+          <h4 class="modal-title"> Edici&oacute;n</h4>
+      </div>
+      <div class="modal-body">
+            <form name="form_datos" class="form-horizontal">
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Descripci&oacute;n</label>
+                      <div class="col-sm-10">
+                          <input type="text" class="form-control" ng-model="vm.registroEditar.descripcion" required>
+                      </div>
+                  </div>
+            </form>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
+      </div>
+</div>

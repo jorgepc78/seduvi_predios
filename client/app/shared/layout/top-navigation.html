@@ -4,7 +4,7 @@
             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                 <i class="fa fa-reorder"></i>
             </button>
-            <a href="#" class="navbar-brand">Inventario de predios</a>
+            <span class="navbar-brand">Inventario de predios</span>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
@@ -22,15 +22,15 @@
                 </li>
 
                 <li ui-sref-active="active" ng-if="currentUser.prediosNoClasificados == true">
-                    <a ui-sref="index.predios_noclasificados"><i class="fa fa-question-circle"></i> <span class="nav-label">Predios no clasificados</span></a>
+                    <a ui-sref="index.predios_no_clasificados"><i class="fa fa-question-circle"></i> <span class="nav-label">Predios no clasificados</span></a>
                 </li>
 
                 <li ui-sref-active="active" ng-if="currentUser.prediosRegistro == true">
-                    <a ui-sref="index.predios_registro"><i class="fa fa-question-circle"></i> <span class="nav-label">Datos generales del predio</span></a>
+                    <a ui-sref="index.predios_registro"><i class="fa fa-pencil-square-o"></i> <span class="nav-label">Datos registrales del predio</span></a>
                 </li>
 
                 <li ui-sref-active="active" ng-if="currentUser.reserva == true">
-                    <a ui-sref="index.reserva"><i class="fa fa-file-text-o"></i> <span class="nav-label">Reserva</span></a>
+                    <a ui-sref="index.reservas"><i class="fa fa-file-text-o"></i> <span class="nav-label">Reserva</span></a>
                 </li>
 
                 <li ui-sref-active="active" ng-if="currentUser.admin == true">
@@ -41,10 +41,7 @@
                     <a class="dropdown-toggle" href dropdown-toggle><i class="fa fa-bars"></i>Cat&aacute;logos <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
                         <li ui-sref-active="active">
-                            <a ui-sref="index.registra_pago"><i class="fa fa-user"></i> <span class="nav-label"> Mis datos</span></a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="index.registra_pago"><i class="fa fa-usd"></i> <span class="nav-label"> Mi historial de cr&eacute;dito</span></a>
+                            <a ui-sref="index.cat_estatus_disponibles"><i class="fa fa-table"></i> <span class="nav-label"> Estatus de predios disponibles</span></a>
                         </li>
                     </ul>
                 </li>

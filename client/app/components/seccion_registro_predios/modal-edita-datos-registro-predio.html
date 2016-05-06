@@ -1,0 +1,130 @@
+<div class="inmodal">
+      <div class="modal-header">
+          <h4 class="modal-title"> Datos de registro del predio</h4>
+      </div>
+      <div class="modal-body">
+            <form name="form_datos" class="form-horizontal">
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Situaci&oacute;n financiera</label>
+                      <div class="col-sm-5">
+                          <select class="form-control m-b" 
+                              ng-model="vm.TipoLoteSeleccionado"
+                              ng-options="tipo as tipo.tipoLote for tipo in vm.listaTiposLote" required>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Direcci&oacute;n</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="vm.predioEditar.direccion">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Clave catastral</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" ng-model="vm.predioEditar.claveCatastral">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Folio RPP</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" ng-model="vm.predioEditar.folioElectronicoRpp">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Fecha registro RPP</label>
+                      <div class="col-sm-3">
+                          <div class="input-group date">
+                              <input type="text" readonly class="form-control" is-open="vm.opened1" datepicker-popup="d/M/yyyy" ui-date="dateOptions" ng-model="vm.predioEditar.fechaRegistroRpp">
+                              <span class="input-group-addon" ng-click="vm.openCalendar1($event)"><i class="fa fa-calendar"></i></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Lugar registro RPP</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="vm.predioEditar.lugarRegistroRpp">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Superfice legal</label>
+                      <div class="col-sm-3">
+                        <input type="number" class="form-control" ng-model="vm.predioEditar.superficie">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Medidas norte</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.medidasNorte">
+                              </div>
+                              <div class="col-md-3 text-right">
+                                      <label class="control-label">Colindante norte</label>
+                              </div>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" ng-model="vm.predioEditar.colindanteNorte">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Medidas sur</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.medidasSur">
+                              </div>
+                              <div class="col-md-3 text-right">
+                                      <label class="control-label">Colindante sur</label>
+                              </div>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" ng-model="vm.predioEditar.colindanteSur">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Medidas este</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.medidasEste">
+                              </div>
+                              <div class="col-md-3 text-right">
+                                      <label class="control-label">Colindante este</label>
+                              </div>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" ng-model="vm.predioEditar.colindanteEste">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Medidas oeste</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <input type="number" class="form-control" ng-model="vm.predioEditar.medidasOeste">
+                              </div>
+                              <div class="col-md-3 text-right">
+                                      <label class="control-label">Colindante oeste</label>
+                              </div>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" ng-model="vm.predioEditar.colindanteOeste">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+
+            </form>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
+      </div>
+</div>

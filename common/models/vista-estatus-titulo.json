@@ -1,0 +1,66 @@
+{
+  "name": "VistaEstatusTitulo",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "postgresql": {
+    "schema": "public",
+    "table": "vista_estatus_titulo"
+  },
+  "properties": {
+    "claveMunicipio": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "clave_municipio",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "idEstatusTitulo": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id_estatus_titulo",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "estatusTitulo": {
+      "type": "String",
+      "required": false,
+      "length": 40,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "estatus_titulo",
+        "dataType": "character varying",
+        "dataLength": 40,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

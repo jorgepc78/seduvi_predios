@@ -97,11 +97,19 @@
     "dataSource": "inv_predios",
     "public": true
   },
+  "TdPrediosInventarioHistorico": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
   "VistaGeomPredios": {
     "dataSource": "inv_predios",
     "public": true
   },
   "VistaPrediosDisponibles": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaPrediosNoClasificados": {
     "dataSource": "inv_predios",
     "public": true
   },
@@ -113,17 +121,43 @@
     "dataSource": "inv_predios",
     "public": true
   },
-  "PerfilesUsuarios": {
-    "dataSource": "inv_predios",
-    "public": true,
-    "$promise": {},
-    "$resolved": true
-  },
   "VistaPrediosContratados": {
     "dataSource": "inv_predios",
     "public": true
   },
   "VistaPrediosTitulacion": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaEstatusDisponiblesPredios": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaEstatusTitulo": {
+    "dataSource": "inv_predios",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "VistaSitFinancieraPredios": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "VistaPrediosDatosRegistro": {
+    "dataSource": "inv_predios",
+    "public": true
+  },
+  "SdePredios": {
+    "dataSource": "seduvi_dbg",
+    "public": true
+  },
+  "Reserva": {
+    "dataSource": "seduvi_dbg",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "CatEstatusReserva": {
     "dataSource": "inv_predios",
     "public": true
   }

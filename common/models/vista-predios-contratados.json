@@ -170,7 +170,7 @@
       },
       "_selectable": true
     },
-    "idtipoLote": {
+    "idTipoLote": {
       "type": "Number",
       "id": true,
       "required": true,
@@ -952,7 +952,7 @@
     "nodos_poligono": {
       "type": "hasMany",
       "model": "VistaGeomPredios",
-      "foreignKey": "idp"
+      "foreignKey": "id"
     }
   },
   "acls": [],

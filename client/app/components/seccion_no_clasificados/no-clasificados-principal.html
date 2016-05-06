@@ -1,0 +1,188 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <div class="row">
+                            <div class="col-md-7">
+                                    <h2>Lista de predios no clasificados</h2>
+                            </div>
+                            <div class="col-md-5">
+                                        <div class="input-group col-md-offset-2">
+                                                <label class="col-md-3 control-label" style="margin-top:7px;">Municipio:</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control m-b" ng-model="vm.municipioSeleccionado" ng-change="vm.muestra_predios_municipio()" ng-options="municipio as municipio.nombreMunicipio for municipio in vm.listaMunicipios" required></select>
+                                            </div>
+                                        </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                                        <div class="input-group" style="margin-top:17px;width: 350px;">
+                                                <label class="col-md-3 control-label" style="margin-top:7px;">Localidad:</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control m-b" ng-model="vm.localidadSeleccionada" ng-change="vm.muestra_predios_localidad()" ng-options="localidad as localidad.nombreLocalidad for localidad in vm.listaLocalidades" required></select>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="col-md-6">
+                                        <div class="input-group" style="margin-top:17px;width: 370px;">
+                                                <label class="col-md-3 control-label" style="margin-top:7px;">Colonia:</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control m-b" ng-model="vm.coloniaSeleccionada" ng-change="vm.muestra_predios_colonia()" ng-options="colonia as colonia.colonia for colonia in vm.listaColonias" required></select>
+                                            </div>
+                                        </div>
+                        </div>
+                    </div>
+
+                    
+                    <br>
+                            <table class="tablaDatos table table-condensed table-hover no-footer">
+                              <thead>
+                                <tr>
+                                    <th>IDP</th>
+                                    <th>Municipio</th>
+                                    <th>Localidad</th>
+                                    <th>Colonia</th>
+                                    <th>Manzana</th>
+                                    <th>Lote</th>
+                                </tr>
+                              </thead>
+                             <tbody>
+                                <tr ng-repeat="predio in vm.predios" ng-click="vm.muestraDatosPredioActual(predio)" ng-class="{seleccion:$index==vm.tablaListaPredios.fila_seleccionada}" class="pointer">
+                                    <td> {{predio.idp}}</td>
+                                    <td> {{predio.municipio}}</td>
+                                    <td> {{predio.localidad}}</td>
+                                    <td> {{predio.colonia}}</td>
+                                    <td> {{predio.manzana}}</td>
+                                    <td> {{(predio.subdivisionLote == '' ? predio.lote : predio.lote + '-' + predio.subdivisionLote)}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <tabla-paginacion config="vm.tablaListaPredios" paginar="vm.cambiarPagina()"></tabla-paginacion>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="ibox">
+        
+                <div class="ibox-content" style="height:790px;">
+                    <div class="tab-content">
+        
+                        <div class="tab-pane active" ng-show="vm.client == 1" ng-init="vm.client = 1">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 text-center">
+                                            <p>
+                                                <h2>Seleccione un registro para ver los detalles</h2>
+                                            </p>
+                                        </div>
+                                    </div>
+                        </div>
+        
+                        <div class="tab-pane active" ng-show="vm.client == 2">
+
+                                    <section id="map">
+                                        <div ui-map="vm.mapa.MapaUbicacionPredio" ui-options="vm.mapa.mapOptions" style="width: 100%; height: 380px;"></div>
+                                    </section>
+
+                                    <div class="panel blank-panel">
+
+                                        <div style="position: relative;height: 320px;">
+
+                                            <div class="full-height-scroll" full-scroll>
+
+                                                <ul class="list-group clear-list" style="height:510px; padding:20px;">
+                                                    <li class="list-group-item fist-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.idp}} </span>
+                                                        Identificador del predio (IDP)
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right" ng-switch on="vm.predioSeleccionado.idtipoLote">
+                                                            <span ng-switch-when="0" class="label label-default">{{vm.predioSeleccionado.tipoLote}}</span>
+                                                            <span ng-switch-when="1" class="label label-danger"> {{vm.predioSeleccionado.tipoLote}}</span>
+                                                            <span ng-switch-when="2" class="label label-primary">{{vm.predioSeleccionado.tipoLote}}</span>
+                                                            <span ng-switch-when="3" class="label label-warning">{{vm.predioSeleccionado.tipoLote}}</span>
+                                                        </span>
+                                                        Tipo de lote
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.municipio}} </span>
+                                                        Municipio
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.localidad}} </span>
+                                                        Localidad
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.colonia}} </span>
+                                                        Colonia o Fraccionamiento
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.manzana}} </span>
+                                                        Manzana
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{(vm.predioSeleccionado.subdivisionLote == '' ? vm.predioSeleccionado.lote : vm.predioSeleccionado.lote + '-' + vm.predioSeleccionado.subdivisionLote)}} </span>
+                                                        Lote
+                                                    </li>
+                                                    <li style="height: 80px" class="list-group-item">
+                                                        <span class="pull-right" style="width: 300px;text-align: right;"> {{vm.predioSeleccionado.direccion}} </span>
+                                                        Direcci&oacute;n
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.claveCatastral}} </span>
+                                                        Clave catastral
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.folioElectronicoRpp}} </span>
+                                                        Folio RPP
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right"> {{vm.predioSeleccionado.superficie | number}} mts<sup>2</sup></span>
+                                                        Superficie legal
+                                                    </li>
+                                                    <li style="height: 80px" class="list-group-item">
+                                                        <span class="pull-right" style="width: 300px;text-align: right;"> {{vm.predioSeleccionado.observacionesPredio}} </span>
+                                                        Observaciones del predio
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                        <div class="col-md-4">
+                                                            <button type="button" ng-click="vm.mueve_predio_disponibles(vm.predioSeleccionado)" class="btn btn-info btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-arrow-left"></i></span> Mover a disponibles</button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" ng-click="vm.mueve_predios_contratados(vm.predioSeleccionado)" class="btn btn-danger btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-arrow-up"></i></span> Mover a contratados</button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" ng-click="vm.mueve_predios_titulados(vm.predioSeleccionado)" class="btn btn-primary btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-arrow-right"></i></span> Mover a titulados</button>
+                                                        </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+      
+                        </div> <!-- client == 2 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

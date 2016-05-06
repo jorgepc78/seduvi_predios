@@ -78,7 +78,7 @@
                           <div class="row">
                               <div class="col-md-4">
                                   <div class="input-group date">
-                                      <input type="text" readonly class="form-control" is-open="vm.opened2" datepicker-popup="d/M/yyyy" ui-date="dateOptions" ng-model="vm.predioEditar.fechaInicioPago" required>
+                                      <input type="text" readonly class="form-control" is-open="vm.opened2" datepicker-popup="d/M/yyyy" ui-date="dateOptions" ng-model="vm.predioEditar.fechaInicioPago">
                                       <span class="input-group-addon" ng-click="vm.openCalendar2($event)"><i class="fa fa-calendar"></i>
                                           
                                       </span>
@@ -166,4 +166,4 @@
           <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
           <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
       </div>
-</div>;
+</div>

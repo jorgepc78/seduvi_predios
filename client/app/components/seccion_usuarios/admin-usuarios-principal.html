@@ -1,0 +1,200 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <div class="row">
+                            <div class="col-md-4">
+                                    <h2>Lista de usuarios del sistema</h2>
+                            </div>
+                            <div class="col-md-8 text-right">
+                                    <div class="mail-tools">
+                                            <button class="btn btn-primary btn-labeled" ng-click="vm.nuevo_usuario()"><span class="btn-label"><i class="fa fa-plus"></i></span> Agregar nuevo usuario</button>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group" style="margin-top:16px;">
+                                <input type="text" ng-teclaenter="vm.muestraResultadosBusqueda()" placeholder="Nombre del usuario" class="input form-control" ng-model="vm.nombre_buscar" required>
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-success" ng-click="vm.limpiaBusqueda()" ng-show="vm.mostrarbtnLimpiar"><i class="fa fa-trash-o"></i> Limpiar</button>
+                                                <button class="btn btn-primary" ng-click="vm.muestraResultadosBusqueda()"><i class="fa fa-search"></i> Buscar</button>
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <br>
+                            <table class="tablaDatos table table-condensed table-hover no-footer">
+                              <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>&Aacute;rea</th>
+                                    <th colspan="2">Correo electr&oacute;nico</th>
+                                    <th>Nombre login</th>
+                                    <th>Activo</th>
+                                </tr>
+                              </thead>
+                             <tbody>
+                                <tr ng-repeat="usuario in vm.usuarios" ng-click="vm.muestraDatosUsuarioActual(usuario)" ng-class="{seleccion:$index==vm.tablaListaUsuarios.fila_seleccionada}" class="pointer">
+                                    <td> {{usuario.nombreCompleto}}</td>
+                                    <td> {{usuario.area}}</td>
+                                    <td class="contact-type"><i class="fa fa-envelope"> </i></td>
+                                    <td> {{usuario.email}}</td>
+                                    <td> {{usuario.username}}</td>
+                                    <td class="client-status"><span class="label label-{{usuario.activo === true ? 'primary' : 'warning'}}">{{usuario.activo === true ? 'S&iacute;' : 'No'}}</span></td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <tabla-paginacion config="vm.tablaListaUsuarios" paginar="vm.cambiarPagina()"></tabla-paginacion>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="ibox ">
+        
+                <div class="ibox-content" style="height:760px;">
+                    <div class="tab-content">
+        
+                        <div class="tab-pane active" ng-show="vm.client == 1" ng-init="vm.client = 1">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 text-center">
+                                            <p>
+                                                <h2>Seleccione un registro para ver los detalles</h2>
+                                            </p>
+                                        </div>
+                                    </div>
+                        </div>
+        
+                        <div class="tab-pane active" ng-show="vm.client == 2">
+
+                                    <div class="panel blank-panel">
+
+                                                        <ul class="list-group clear-list">
+                                                            <li class="list-group-item fist-item">
+                                                                <span class="pull-right"> {{vm.UsuarioSeleccionado.nombreCompleto}} </span>
+                                                                Nombre
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right"> {{vm.UsuarioSeleccionado.area}} </span>
+                                                                &Aacute;rea
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right"> {{vm.UsuarioSeleccionado.email}} </span>
+                                                                Email
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right"> {{vm.UsuarioSeleccionado.username}} </span>
+                                                                Nombre login
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right label label-{{vm.UsuarioSeleccionado.activo === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.activo === true ? 'S&iacute;' : 'No'}}</span>
+                                                                Usuario activo
+                                                            </li>
+                                                            
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right label label-{{vm.UsuarioSeleccionado.prediosNoClasificados === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.prediosNoClasificados === true ? 'S&iacute;' : 'No'}}</span>
+                                                                Acceso a predios no clasificados
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span class="pull-right label label-{{vm.UsuarioSeleccionado.prediosRegistro === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.prediosRegistro === true ? 'S&iacute;' : 'No'}}</span>
+                                                                Acceso a la edici&oacute;n del registro del predio
+                                                            </li>
+
+                                                            <li class="list-group-item text-center">
+                                                                <h4>Predios disponibles</h4>
+                                                            </li>
+                                                            <li class="list-group-item fist-item">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4"></div>
+                                                                    <div class="col-sm-1">Ver</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.prediosDisponibles === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.prediosDisponibles === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-1">Editar</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.edicionPrediosDisponibles === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.edicionPrediosDisponibles === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-4"></div>
+                                                                </div>
+                                                            </li>
+
+                                                            <li class="list-group-item text-center">
+                                                                <h4>Predios contratados</h4>
+                                                            </li>
+                                                            <li class="list-group-item fist-item">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2">Ver</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.prediosContratados === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.prediosContratados === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-2">Editar datos beneficiario</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.edicionContratadosBeneficiario === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.edicionContratadosBeneficiario === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-2">Editar datos financieros</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.edicionContratadosFinanciero === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.edicionContratadosFinanciero === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-2">Editar datos jur&iacute;dicos</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.edicionContratadosJuridico === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.edicionContratadosJuridico === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                </div>
+                                                            </li>
+
+                                                            <li class="list-group-item text-center">
+                                                                <h4>Predios titulados</h4>
+                                                            </li>
+                                                            <li class="list-group-item fist-item">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4"></div>
+                                                                    <div class="col-sm-1">Ver</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.prediosTitulados === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.prediosTitulados === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-1">Editar</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.edicionPrediosTitulados === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.edicionPrediosTitulados === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-4"></div>
+                                                                </div>
+                                                            </li>
+
+                                                            <li class="list-group-item text-center">
+                                                                <h4>Reserva</h4>
+                                                            </li>
+                                                            <li class="list-group-item fist-item">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4"></div>
+                                                                    <div class="col-sm-1">Ver</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.reserva === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.reserva === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-1">Editar</div>
+                                                                    <div class="col-sm-1"><span class="pull-left label label-{{vm.UsuarioSeleccionado.edicionReserva === true ? 'primary' : 'warning'}}">{{vm.UsuarioSeleccionado.edicionReserva === true ? 'S&iacute;' : 'No'}}</span></div>
+                                                                    <div class="col-sm-4"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                            </li>
+
+                                                        </ul>
+        
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center">
+                                                                <div class="col-md-6">
+                                                                    <button type="button" ng-click="vm.edita_datos_usuario(vm.UsuarioSeleccionado)" class="btn btn-primary btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-pencil"></i></span> Editar usuario</button>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <button type="button" ng-click="vm.elimina_usuario(vm.UsuarioSeleccionado)" class="btn btn-danger btn-sm btn-labeled"><span class="btn-label"><i class="fa fa-trash-o"></i></span> Eliminar usuario</button>
+                                                                </div>
+                                                    </div>
+                                                </div>
+
+                                    </div>
+
+                                </div>
+      
+                        </div> <!-- client == 2 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

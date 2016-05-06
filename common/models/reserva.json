@@ -1,0 +1,126 @@
+{
+  "name": "Reserva",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "postgresql": {
+    "schema": "sde",
+    "table": "reserva"
+  },
+  "properties": {
+    "objectid": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "objectid",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "claveMunicipio": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "municipio",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "estatusReserva": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "estatus_reserva",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "observacionesReserva": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "observaciones_reserva",
+        "dataType": "text",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "nombre": {
+      "type": "String",
+      "required": false,
+      "length": 50,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "nombre",
+        "dataType": "character varying",
+        "dataLength": 50,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "superficieRegistrada": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 38,
+      "scale": 8,
+      "postgresql": {
+        "columnName": "superficie_registrada",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 38,
+        "dataScale": 8,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "situacion_reserva": {
+      "type": "belongsTo",
+      "model": "CatEstatusReserva",
+      "foreignKey": "estatusReserva"
+    },
+    "municipio_pertenece": {
+      "type": "belongsTo",
+      "model": "CatMunicipios",
+      "foreignKey": "municipio"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

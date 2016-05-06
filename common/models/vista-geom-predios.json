@@ -10,6 +10,24 @@
     "table": "vista_geom_predios"
   },
   "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "index": true,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
     "index": {
       "type": "number",
       "required": false,
@@ -54,24 +72,6 @@
         "dataLength": null,
         "dataPrecision": 53,
         "dataScale": null,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
-    "idp": {
-      "type": "number",
-      "id": true,
-      "required": false,
-      "index": true,
-      "length": null,
-      "precision": 64,
-      "scale": 0,
-      "postgresql": {
-        "columnName": "idp",
-        "dataType": "bigint",
-        "dataLength": null,
-        "dataPrecision": 64,
-        "dataScale": 0,
         "nullable": "YES"
       },
       "_selectable": true

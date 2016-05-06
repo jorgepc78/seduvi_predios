@@ -458,7 +458,7 @@
       "scale": null,
       "postgresql": {
         "columnName": "fecha_registro_rpp",
-        "dataType": "text",
+        "dataType": "timestamp with time zone",
         "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
@@ -586,7 +586,7 @@
       "scale": null,
       "postgresql": {
         "columnName": "fecha_act_disponibles",
-        "dataType": "text",
+        "dataType": "timestamp with time zone",
         "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
@@ -600,7 +600,7 @@
     "nodos_poligono": {
       "type": "hasMany",
       "model": "VistaGeomPredios",
-      "foreignKey": "idp"
+      "foreignKey": "id"
     }
   },
   "acls": [],

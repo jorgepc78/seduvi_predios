@@ -7,5 +7,14 @@
     "name": "inv_predios",
     "user": "postgres",
     "connector": "postgresql"
+  },
+  "seduvi_dbg": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "seduvi_bdg",
+    "password": "post",
+    "name": "seduvi_dbg",
+    "user": "postgres",
+    "connector": "postgresql"
   }
 }

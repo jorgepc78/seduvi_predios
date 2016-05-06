@@ -1,0 +1,178 @@
+<div class="inmodal">
+      <div class="modal-header">
+          <h4 class="modal-title"> Datos del usuario</h4>
+      </div>
+      <div class="modal-body" style="background: #fff;">
+            <form name="form_datos" class="form-horizontal">
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Nombre</label>
+                      <div class="col-sm-7">
+                          <input type="text" class="form-control" ng-model="vm.usuarioEditar.nombreCompleto" required>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">&Aacute;rea</label>
+                      <div class="col-sm-7">
+                          <input type="text" class="form-control" ng-model="vm.usuarioEditar.area" required>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-5">
+                          <input type="email" class="form-control" ng-model="vm.usuarioEditar.email" required>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Nombre de usuario</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <input type="text" class="form-control" ng-model="vm.usuarioEditar.username" required>
+                              </div>
+                              <div class="col-md-1" style="width: 85px;">
+                                  <label class="control-label">Password</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <input type="text" class="form-control" ng-model="vm.usuarioEditar.password">
+                              </div>
+                              <div class="col-md-1">
+                                  <label class="control-label">Activo</label>
+                              </div>
+                              <div class="col-md-1">
+                                  <input ng-if="vm.usuarioEditar.activo!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.activo"/>
+                              </div>
+                          </div>
+                      <span class="help-block m-b-none">(Si no desea cambiar el password, dejar la casilla correspondiente en blanco)</span>
+                      </div>
+                  </div>
+
+                  <div class="hr-line-dashed"></div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Acceso a predios no clasificados</label>
+                      <div class="col-sm-9">
+                          <div class="row">
+                              <div class="col-md-1">
+                                  <input ng-if="vm.usuarioEditar.prediosNoClasificados!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.prediosNoClasificados"/>
+                              </div>
+                              <div class="col-md-4 text-right">
+                                  <label class="control-label">Acceso a la edici&oacute;n del registro del predio</label>
+                              </div>
+                              <div class="col-md-2">
+                                  <input ng-if="vm.usuarioEditar.prediosRegistro!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.prediosRegistro"/>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="hr-line-dashed"></div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Predios disponibles</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-1 text-right">
+                                  <label class="control-label">Ver</label>
+                              </div>
+                              <div class="col-md-2">
+                                  <input ng-if="vm.usuarioEditar.prediosDisponibles!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.prediosDisponibles"/>
+                              </div>
+                              <div class="col-md-1 text-right">
+                                  <label class="control-label">Editar</label>
+                              </div>
+                              <div class="col-md-2">
+                                  <input ng-disabled="!vm.usuarioEditar.prediosDisponibles" ng-if="vm.usuarioEditar.edicionPrediosDisponibles!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.edicionPrediosDisponibles"/>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="hr-line-dashed"></div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Predios contratados</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-1 text-right">
+                                  <label class="control-label">Ver</label>
+                              </div>
+                              <div class="col-md-1">
+                                  <input ng-if="vm.usuarioEditar.prediosContratados!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.prediosContratados"/>
+                              </div>
+                              <div class="col-md-2 text-right">
+                                  <label class="control-label">Editar datos beneficiario</label>
+                              </div>
+                              <div class="col-md-1" style="padding-left:0">
+                                  <input ng-disabled="!vm.usuarioEditar.prediosContratados" ng-if="vm.usuarioEditar.edicionContratadosBeneficiario!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.edicionContratadosBeneficiario"/>
+                              </div>
+                              <div class="col-md-2 text-right">
+                                  <label class="control-label">Editar datos financieros</label>
+                              </div>
+                              <div class="col-md-1" style="padding-left:0">
+                                  <input ng-disabled="!vm.usuarioEditar.prediosContratados" ng-if="vm.usuarioEditar.edicionContratadosFinanciero!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.edicionContratadosFinanciero"/>
+                              </div>
+                              <div class="col-md-2 text-right">
+                                  <label class="control-label">Editar datos jur&iacute;dicos</label>
+                              </div>
+                              <div class="col-md-1" style="padding-left:0">
+                                  <input ng-disabled="!vm.usuarioEditar.prediosContratados" ng-if="vm.usuarioEditar.edicionContratadosJuridico!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.edicionContratadosJuridico"/>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="hr-line-dashed"></div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Predios titulados</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-1 text-right">
+                                  <label class="control-label">Ver</label>
+                              </div>
+                              <div class="col-md-2">
+                                  <input ng-if="vm.usuarioEditar.prediosTitulados!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.prediosTitulados"/>
+                              </div>
+                              <div class="col-md-1 text-right">
+                                  <label class="control-label">Editar</label>
+                              </div>
+                              <div class="col-md-2">
+                                  <input ng-disabled="!vm.usuarioEditar.prediosTitulados" ng-if="vm.usuarioEditar.edicionPrediosTitulados!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.edicionPrediosTitulados"/>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="hr-line-dashed"></div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">Reserva</label>
+                      <div class="col-sm-10">
+                          <div class="row">
+                              <div class="col-md-1 text-right">
+                                  <label class="control-label">Ver</label>
+                              </div>
+                              <div class="col-md-2">
+                                  <input ng-if="vm.usuarioEditar.reserva!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.reserva"/>
+                              </div>
+                              <div class="col-md-1 text-right">
+                                  <label class="control-label">Editar</label>
+                              </div>
+                              <div class="col-md-2">
+                                  <input ng-disabled="!vm.usuarioEditar.reserva" ng-if="vm.usuarioEditar.edicionReserva!==undefined" type="checkbox" class="js-switch" ui-switch="{color:'#1AB394', secondaryColor: '#F89279'}" ng-model="vm.usuarioEditar.edicionReserva"/>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+            </form>
+
+      </div>
+      <div class="modal-footer">
+          <span class="text-danger" ng-show="vm.msg_password">En necesario escribir el password</span>
+          <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
+      </div>
+</div>

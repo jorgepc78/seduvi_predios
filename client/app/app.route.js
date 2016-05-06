@@ -51,6 +51,49 @@
                 controllerAs: 'vm',
                 authenticate: true
             })
+            .state('index.predios_titulados', {
+                url: '/predios_titulados',
+                templateUrl: 'app/components/seccion_titulados/titulados-principal.html',
+                controller: 'TituladosPrincipalController',
+                controllerAs: 'vm',
+                authenticate: true
+            })
+            .state('index.predios_no_clasificados', {
+                url: '/predios_no_clasificados',
+                templateUrl: 'app/components/seccion_no_clasificados/no-clasificados-principal.html',
+                controller: 'NoClasificadosPrincipalController',
+                controllerAs: 'vm',
+                authenticate: true
+            })
+            .state('index.predios_registro', {
+                url: '/predios_registro',
+                templateUrl: 'app/components/seccion_registro_predios/registro-predios-principal.html',
+                controller: 'RegistroPrediosPrincipalController',
+                controllerAs: 'vm',
+                authenticate: true
+            })
+            .state('index.reservas', {
+                url: '/reservas',
+                templateUrl: 'app/components/seccion_reservas/reservas-principal.html',
+                controller: 'ReservasPrincipalController',
+                controllerAs: 'vm',
+                authenticate: true
+            })
+
+            .state('index.admin_usuarios', {
+                url: '/admin_usuarios',
+                templateUrl: 'app/components/seccion_usuarios/admin-usuarios-principal.html',
+                controller: 'AdminUsuariosPrincipalController',
+                controllerAs: 'vm',
+                authenticate: true
+            })
+            .state('index.cat_estatus_disponibles', {
+                url: '/cat_estatus_disponibles',
+                templateUrl: 'app/components/seccion_catalogos/contenido-catalogo.html',
+                controller: 'EstatusPrediosDisponiblesController',
+                controllerAs: 'vm',
+                authenticate: true
+            })
 
 
     }

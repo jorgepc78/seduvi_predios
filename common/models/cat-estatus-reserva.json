@@ -1,0 +1,51 @@
+{
+  "name": "CatEstatusReserva",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "postgresql": {
+    "schema": "public",
+    "table": "cat_estatus_reserva"
+  },
+  "properties": {
+    "estatusReserva": {
+      "type": "Number",
+      "id": true,
+      "required": true,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "estatus_reserva",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "descripcionEstatusReserva": {
+      "type": "String",
+      "required": false,
+      "length": 46,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "descripcion_estatus_reserva",
+        "dataType": "character varying",
+        "dataLength": 46,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
