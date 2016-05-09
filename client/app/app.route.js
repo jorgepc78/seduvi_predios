@@ -87,10 +87,10 @@
                 controllerAs: 'vm',
                 authenticate: true
             })
-            .state('index.cat_estatus_disponibles', {
-                url: '/cat_estatus_disponibles',
+            .state('index.muestra_catalogo', {
+                url: '/muestra_catalogo/:catalogo',
                 templateUrl: 'app/components/seccion_catalogos/contenido-catalogo.html',
-                controller: 'EstatusPrediosDisponiblesController',
+                controller: 'ContenidoCatalogoController',
                 controllerAs: 'vm',
                 authenticate: true
             })

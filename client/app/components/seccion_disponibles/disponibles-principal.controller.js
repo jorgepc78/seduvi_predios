@@ -631,7 +631,7 @@
                     };
 
                     var modalInstance = $modal.open({
-                        templateUrl: 'app/components/proceso_movimientos_estatus/modal-mueve-predios-contratados.html',
+                        templateUrl: 'app/components/proceso_movimiento_estatus/modal-mueve-predios-contratados.html',
                         windowClass: "animated fadeIn",
                         size: 'lg',
                         controller: 'ModalmuevePrediosContratadosController as vm',

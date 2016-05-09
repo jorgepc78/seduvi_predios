@@ -12,6 +12,7 @@
             var vm = this;
             
             vm.msg_password = false;
+            vm.txt_msg_password = '';
 
             vm.usuarioEditar = {
                 nombreCompleto                 : '',
@@ -46,9 +47,11 @@
 
                 if(vm.usuarioEditar.password == '')
                 {
+                    vm.txt_msg_password = 'En necesario escribir el password';
                     vm.msg_password = true;
                     $timeout(function(){
                          vm.msg_password = false;
+                         vm.txt_msg_password = '';
                     }, 3000);
                 }
                 else
@@ -74,8 +77,19 @@
                         reserva                        : vm.usuarioEditar.reserva,
                         edicionReserva                 : vm.usuarioEditar.edicionReserva
                     })
-                    .$promise.then(function(respuesta) {
+                    .$promise
+                    .then(function(respuesta) {
                           $modalInstance.close();
+                    })
+                    .catch(function(error) {
+                        if(error.status == 422) {
+                                vm.txt_msg_password = 'El nombre de usuario o el email ya existen';
+                                vm.msg_password = true;
+                                $timeout(function(){
+                                     vm.msg_password = false;
+                                     vm.txt_msg_password = '';
+                                }, 3000);
+                        }
                     });
 
                 }

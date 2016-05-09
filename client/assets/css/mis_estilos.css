@@ -1,4 +1,8 @@
 /*SECCION DE ESTILOS QUE MODIFICAN EL STYLE.CSS PRINCIPAL*/
+body.skin-2 {
+  background-color: #fff !important;
+}
+
 body.fixed-nav #wrapper #page-wrapper {
   margin-top: 50px;
 }
@@ -28,6 +32,15 @@ body.fixed-nav #wrapper #page-wrapper {
 .login-container {
   background-color: #f3f3f4;
   height: 100vh;
+}
+.pace .pace-progress {
+  background: red;
+  position: fixed;
+  z-index: 2040;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 6px;
 }
 
 

@@ -171,7 +171,7 @@
 
       </div>
       <div class="modal-footer">
-          <span class="text-danger" ng-show="vm.msg_password">En necesario escribir el password</span>
+          <span class="text-danger" ng-show="vm.msg_password">{{vm.txt_msg_password}}</span>
           <button type="button" class="btn btn-white" ng-click="$dismiss()">Cancelar</button>
           <button type="button" class="btn btn-primary" ng-disabled="form_datos.$invalid" ng-click="vm.guardar()">Guardar</button>
       </div>

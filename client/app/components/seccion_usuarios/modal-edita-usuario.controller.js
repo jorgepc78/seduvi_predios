@@ -12,6 +12,7 @@
             var vm = this;
 
             vm.msg_password = false;
+            vm.txt_msg_password = '';
             
             vm.usuarioEditar = {
                 id                             : usuarioEditar.id,
@@ -97,8 +98,19 @@
                 },
                     datos
                 )
-                .$promise.then(function(respuesta) {
+                .$promise
+                .then(function(respuesta) {
                       $modalInstance.close(vm.usuarioEditar);
+                })
+                .catch(function(error) {
+                    if(error.status == 422) {
+                            vm.txt_msg_password = 'El email ya existe';
+                            vm.msg_password = true;
+                            $timeout(function(){
+                                 vm.msg_password = false;
+                                 vm.txt_msg_password = '';
+                            }, 3000);
+                      }
                 });
             };
     };

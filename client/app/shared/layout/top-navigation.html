@@ -34,14 +34,32 @@
                 </li>
 
                 <li ui-sref-active="active" ng-if="currentUser.admin == true">
-                    <a ui-sref="index.admin_usuarios"><i class="fa fa-file-text-o"></i> <span class="nav-label">Usuarios</span></a>
+                    <a ui-sref="index.admin_usuarios"><i class="fa fa-users"></i> <span class="nav-label">Usuarios</span></a>
                 </li>
 
                 <li class="dropdown" dropdown ng-if="currentUser.admin == true">
                     <a class="dropdown-toggle" href dropdown-toggle><i class="fa fa-bars"></i>Cat&aacute;logos <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
                         <li ui-sref-active="active">
-                            <a ui-sref="index.cat_estatus_disponibles"><i class="fa fa-table"></i> <span class="nav-label"> Estatus de predios disponibles</span></a>
+                            <a ui-sref="index.muestra_catalogo({ catalogo: 'estatus_disponibles'})"><i class="fa fa-table"></i> <span class="nav-label"> Estatus de predios disponibles</span></a>
+                        </li>
+                        <!-- <li ui-sref-active="active">
+                            <a ui-sref="index.muestra_catalogo({ catalogo: 'estatus_reserva'})"><i class="fa fa-table"></i> <span class="nav-label"> Estatus de la reserva</span></a>
+                        </li> -->
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.muestra_catalogo({ catalogo: 'estatus_titulo'})"><i class="fa fa-table"></i> <span class="nav-label"> Estatus del t&iacute;tulo</span></a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.muestra_catalogo({ catalogo: 'modalidad_programa'})"><i class="fa fa-table"></i> <span class="nav-label"> Modalidad del programa de vivienda</span></a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.muestra_catalogo({ catalogo: 'situacion_financiera'})"><i class="fa fa-table"></i> <span class="nav-label"> Situaci&oacute;n financiera del predio</span></a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.muestra_catalogo({ catalogo: 'situacion_juridica'})"><i class="fa fa-table"></i> <span class="nav-label"> Situaci&oacute;n jur&iacute;dica del predio</span></a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.muestra_catalogo({ catalogo: 'documento_asignacion'})"><i class="fa fa-table"></i> <span class="nav-label"> Documento de asignaci&oacute;n del predio</span></a>
                         </li>
                     </ul>
                 </li>

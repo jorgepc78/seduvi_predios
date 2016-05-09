@@ -815,7 +815,7 @@
                     };
 
                     var modalInstance = $modal.open({
-                        templateUrl: 'app/components/proceso_movimientos_estatus/modal-mueve-predios-titulados.html',
+                        templateUrl: 'app/components/proceso_movimiento_estatus/modal-mueve-predios-titulados.html',
                         windowClass: "animated fadeIn",
                         controller: 'ModalMuevePrediosTituladosController as vm',
                         resolve: {
